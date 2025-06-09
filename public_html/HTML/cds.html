@@ -22,7 +22,7 @@
   $con = db_connect();
   $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
-  <!-- can we have the search input a bit more beautiful? -->
+
   echo "<input type='text' class='table-search' onkeyup=\"filterTable('cdsTable', this.value)\">\n";
   echo "<table id='cdsTable'>
         <thead>
