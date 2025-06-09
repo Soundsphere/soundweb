@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>soundsphere.net - CDs</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#7866ae">
+<link rel="stylesheet" href="/Style/style.css">
+<link rel="icon" type="image/png" href="/favicon.png">
+</head>
+<body>
+
+  <div class="topnav">
+    <a href="/index.html">Home</a>
+    <a href="/HTML/cds.html">CDs</a>
+    <a href="/HTML/modular.html">Modular</a>
+  </div>
+
+<div class="content">
+  <h1>CD Collection</h1>
+  <p>Overview, full database <a href='/HTML/cdsfull.html'>here</a>
+  </p>
+  <br/>
+  <?php
+  require_once 'config.php';
+  $con=mysqli_connect($db_host,$db_user,$db_pass,$db_name);
+  // Check connection
+  if (mysqli_connect_errno())
+  {
+  echo "Failed to connect to MySQL: " . mysqli_connect_error();
+  }
+
+  $result = mysqli_query($con,"SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC");
+
+  echo "<table>
+  <tr>
+  <th>Number</th>
+  <th>Artist</th>
+  <th>Album</th>
+  </tr>";
+
+  while($row = mysqli_fetch_array($result))
+  {
+  echo "<tr>";
+  echo "<td>" . '' . "</td>";
+  echo "<td>" . $row['Artist'] . "</td>";
+  echo "<td>" . $row['Album'] . "</td>";
+  echo "</tr>";
+  }
+  echo "</table>";
+  
+  mysqli_close($con);
+  ?>
+</div>
+
+<div class="footer">
+  <div class="smimages">
+    <p>
+      <a rel="me" href="https://social.tchncs.de/@Soundsphere" target="_blank">
+      <img src="/mastodon.png" alt="mastodon icon" style="width:18px;height:18px;"></a>
+      <a href="https://www.instagram.com/soundsphere/" target="_blank">
+      <img src="/instagram.png" alt="instagram icon" style="width:18px;height:18;"></a>
+    </p>
+  </div>
+</div>
+
+</body>
+</html>

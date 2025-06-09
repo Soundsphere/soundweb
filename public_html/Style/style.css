@@ -1,0 +1,117 @@
+/* standard stylesheet for the website. Defines header, footer and other
+general stuff */
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #1e2127;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+div.topnav {
+  width: 100%;
+  float: left;
+  position: fixed;
+  overflow: hidden;
+  background-color: #886FC6;
+  opacity: 0.9;
+}
+
+/* Style the topnav links */
+div.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+div.topnav a:hover {
+  background-color: #6b5b95;
+  color: black;
+}
+
+/* Style the content */
+div.content {
+  width: 100%;
+  background-color: #1e2127;
+  padding: 15px;
+  padding-left: 20px;
+  bottom: 60px;
+  color: white;
+  padding-top: 50px;
+  line-height: 1.7;
+}
+
+/* Style hyperlinks on my site */
+div.content a {
+  color: grey;
+}
+
+/* set table width and start the counter for the rows */
+table {
+  width: 100%;
+  counter-reset: row-num -1;
+  padding-bottom: 60px;
+}
+
+/* row counter for the table rows */
+table tr {
+  counter-increment: row-num;
+}
+
+/* start counter on the second entry of the table to avoid counting header */
+table tr td:first-child::before {
+    content: counter(row-num) ". ";
+}
+
+/* zebra style. Every second row has different background colour */
+tr:nth-child(even) {
+  background-color: #100e14;
+}
+
+/* table header styling */
+th {
+  padding: 20px;
+  text-align: left;
+  border-bottom: 4px solid white;
+}
+
+/* table border style for the rows */
+td {
+  padding: 15px;
+  border-bottom: 1px solid white;
+}
+
+/* maybe I need this. Uncomment when needed, highlights row under mouse pointer
+td:hover {
+  background-color: #472b54;
+}
+*/
+
+/* Style the footer */
+div.footer {
+  position: fixed;
+  float: left;
+  bottom: 0;
+  width: 100%;
+  heigt: 40px;
+  background-color: #886FC6;
+  opacity: 0.9;
+  color: white;
+  padding: 1px;
+}
+
+div.smimages {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}

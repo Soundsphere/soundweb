@@ -1,0 +1,114 @@
+/* stylesheet for the fingerboarding subpath reference this for everything
+in the fingerboarding folder */
+* {
+  box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: #0a0a0a ;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Style the top navigation bar */
+div.topnav {
+  width: 100%;
+  float: left;
+  position: fixed;
+  overflow: hidden;
+  background-color: #886FC6;
+  opacity: 0.9;
+}
+
+/* Style the topnav links */
+div.topnav a {
+  float: left;
+  display: block;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+}
+
+/* Change color on hover */
+div.topnav a:hover {
+  background-color: #6b5b95;
+  color: black;
+}
+
+/* Style the content */
+div.content {
+  width: 100%;
+  background-color: #0a0a0a;
+  padding: 15px;
+  padding-left: 20px;
+  bottom: 60px;
+  color: white;
+  padding-top: 50px;
+  line-height: 1.7;
+}
+
+/* Style hyperlinks within the content div */
+div.content a:link {
+  color: #6b5b95;
+  background-color: transparent;
+  text-decoration: italic;
+}
+
+div.content a:visited {
+  color: #b8a9c9;
+  background-color: transparent;
+  text-decoration: italic;
+}
+
+div.content a:hover {
+  color: #d64161;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+div.content a:active {
+  color: #5b9aa0;
+  background-color: transparent;
+  text-decoration: underline;
+}
+
+/* styling the list of spots */
+div.spotlist {
+  padding-top: 10px;
+  padding-left: 20px;
+}
+
+/*
+div.map {
+  padding-bottom: 60px;
+}
+*/
+
+div.backtotop {
+  padding-bottom: 60px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Style the footer */
+div.footer {
+  position: fixed;
+  float: left;
+  bottom: 0;
+  width: 100%;
+  heigt: 40px;
+  background-color: #886FC6;
+  opacity: 0.9;
+  color: white;
+  padding: 5px;
+}
+
+div.smimages {
+  display: flex;
+  justify-content: flex-end;
+  padding-right: 20px;
+}
