@@ -16,31 +16,71 @@
   <p>
     <h1>Modular Synthesizer</h1>
   </p>
-  <p>
-    <h2>Some Videos</h2>
-    <iframe title="The Inception Of The Electric Cosmos" width="560" height="315" src="https://tube.tchncs.de/videos/embed/ua2rUzhUze9kRsX4V3V2jT" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-  </p>
-  <p>
-    <iframe title="Long Distance Call" width="560" height="315" src="https://tube.tchncs.de/videos/embed/i3tFgye18PM6zuEqUFZiEq" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-  </p>
-  <p>
-    <iframe title="Commute" width="560" height="315" src="https://tube.tchncs.de/videos/embed/2MRhSZh5PoqnsfofZVoqco" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-  </p>
-  <p>
-    <iframe title="Glitch - Arturia MiniBrute 2S and Arturia DrumBrute Impact Only" width="560" height="315" src="https://tube.tchncs.de/videos/embed/goNdtDwK5SFPfcfd2HorVS" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
-  </p>
-   <p>
-    <h2>Modular Synthesizer</h2>
-  </p>
-  <p>
-  This is my current modular rig which you can find in detail at <a href="https://modulargrid.net/e/racks/view/2405183" target="_blank">ModularGrid</a>
-  </p>
-  <p>
-    <img src="/Static/modulargrid.jpg" alt="modular grid screenshot">
-  </p>
-  <p>
-  </br>
-  </p>
+  <div class="moduleList">
+    <h2>Module List</h2>
+    <p>Overview of my modules in my modular rig</p>
+    <?php
+    require_once 'db.php';
+    $con = db_connect();
+    $sql = "SELECT Manufacturer, Model, Type, Width, Depth, p12v, n12v FROM Stuff.Modules ORDER BY Manufacturer ASC";
+    $result = db_query($con, $sql);
+  
+    echo "<table>
+    <tr>
+    <th>Number</th>
+    <th>Company</th>
+    <th>Model</th>
+    <th>Type</th>
+    <th>Width in HP</th>
+    <th>Depth in mm</th>
+    <th>+12v</th>
+    <th>-12v</th>
+    </tr>";
+  
+    while($row = mysqli_fetch_array($result))
+    {
+    echo "<tr>";
+    echo "<td>" . '' . "</td>";
+    echo "<td>" . $row['Manufacturer'] . "</td>";
+    echo "<td>" . $row['Model'] . "</td>";
+    echo "<td>" . $row['Type'] . "</td>";
+    echo "<td>" . $row['Width'] . "</td>";
+    echo "<td>" . $row['Depth'] . "</td>";
+    echo "<td>" . $row['p12v'] . "</td>";
+    echo "<td>" . $row['n12v'] . "</td>";
+    echo "</tr>";
+    }
+    echo "</table>";
+    
+    db_close($con);
+    ?>
+  </div>
+
+  <div class="Videos">
+    <p>
+      <h2>Some Videos</h2>
+      <iframe title="The Inception Of The Electric Cosmos" width="560" height="315" src="https://tube.tchncs.de/videos/embed/ua2rUzhUze9kRsX4V3V2jT" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+      <iframe title="Long Distance Call" width="560" height="315" src="https://tube.tchncs.de/videos/embed/i3tFgye18PM6zuEqUFZiEq" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    </p>
+    <p>
+      <iframe title="Commute" width="560" height="315" src="https://tube.tchncs.de/videos/embed/2MRhSZh5PoqnsfofZVoqco" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+      <iframe title="Glitch - Arturia MiniBrute 2S and Arturia DrumBrute Impact Only" width="560" height="315" src="https://tube.tchncs.de/videos/embed/goNdtDwK5SFPfcfd2HorVS" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
+    </p>
+     <p>
+      <h2>Modular Synthesizer</h2>
+    </p>
+  </div>
+  <div class="image">
+    <p>
+    This is my current modular rig which you can find in detail at <a href="https://modulargrid.net/e/racks/view/2405183" target="_blank">ModularGrid</a>
+    </p>
+    <p>
+      <img src="/Static/modulargrid.jpg" alt="modular grid screenshot">
+    </p>
+  </div>
+    <p>
+    </br>
+    </p>
 </div>
 
 <?php include "../Static/footer.php"; ?>
