@@ -27,16 +27,19 @@
     $result = db_query($con, $sql);
   
     echo "<table>
-    <tr>
-    <th>Number</th>
-    <th>Company</th>
-    <th>Model</th>
-    <th>Type</th>
-    <th>Width in HP</th>
-    <th>Depth in mm</th>
-    <th>+12v</th>
-    <th>-12v</th>
-    </tr>";
+          <thead>
+            <tr>
+              <th>Number</th>
+              <th>Company</th>
+              <th>Model</th>
+              <th>Type</th>
+              <th>Width in HP</th>
+              <th>Depth in mm</th>
+              <th>+12v</th>
+              <th>-12v</th>
+            </tr>
+        </thead>
+        <tbody>";
   
     while($row = mysqli_fetch_array($result))
     {
@@ -51,7 +54,7 @@
     echo "<td>" . $row['n12v'] . "</td>";
     echo "</tr>";
     }
-    echo "</table>";
+    echo "</tbody></table>";
     
     db_close($con);
     ?>
@@ -87,5 +90,6 @@
 
 <?php include "../Static/footer.php"; ?>
 
+<script src="/Static/sort.js"></script>
 </body>
 </html>
