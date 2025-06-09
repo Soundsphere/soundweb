@@ -18,15 +18,10 @@
   </p>
   <br/>
   <?php
-  require_once 'config.php';
-  $con=mysqli_connect($db_host,$db_user,$db_pass,$db_name);
-  // Check connection
-  if (mysqli_connect_errno())
-  {
-  echo "Failed to connect to MySQL: " . mysqli_connect_error();
-  }
-
-  $result = mysqli_query($con,"SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC");
+  require_once 'db.php';
+  $con = db_connect();
+  $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
+  $result = db_query($con, $sql);
 
   echo "<table>
   <tr>
@@ -45,7 +40,7 @@
   }
   echo "</table>";
   
-  mysqli_close($con);
+  db_close($con);
   ?>
 </div>
 
