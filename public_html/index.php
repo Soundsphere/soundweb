@@ -18,7 +18,7 @@
 	It can be accessed <a href="/HTML/cds.html">here</a>
 </p>
 <p>
-  There's also a section for my <a href="/HTML/modular.html">modular rig</a>, but that is just a screenshot at the moment.
+  There's also a section for my <a href="/HTML/modular.html">modular rig</a>, with a few example videos and a screenshot of my current rig from modular grid.
 </p>
 </div>
 
