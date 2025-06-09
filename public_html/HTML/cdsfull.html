@@ -29,7 +29,8 @@
   echo "Failed to connect to MySQL: " . mysqli_connect_error();
   }
 
-  $result = mysqli_query($con,"SELECT Artist, Album, Tracks, Genre, Label, Type, Package, Discs, AlbumRelease, CDRelease, Country, Comment, Created FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC");
+  $result = mysqli_query($con,"SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC");
+
   echo "<table>
   <tr>
   <th>Number</th>
