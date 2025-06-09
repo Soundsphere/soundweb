@@ -1,0 +1,7 @@
+# Ignore sensitive configuration
+public_html/config.php
+**/config.php
+
+# Ignore macOS Finder files
+*.DS_Store
+*.DS_store
