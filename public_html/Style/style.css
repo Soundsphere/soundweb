@@ -115,3 +115,7 @@ div.smimages {
   justify-content: flex-end;
   padding-right: 20px;
 }
+
+/* sort icons for tables */
+th.sort-asc::after  { content: ' ▲'; }
+th.sort-desc::after { content: ' ▼'; }

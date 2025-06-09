@@ -24,11 +24,14 @@
   $result = db_query($con, $sql);
 
   echo "<table>
-  <tr>
-  <th>Number</th>
-  <th>Artist</th>
-  <th>Album</th>
-  </tr>";
+        <thead>  
+          <tr>
+            <th>Number</th>
+            <th>Artist</th>
+            <th>Album</th>
+          </tr>
+        </thead>
+        <tbody>";
 
   while($row = mysqli_fetch_array($result))
   {
@@ -38,7 +41,7 @@
   echo "<td>" . $row['Album'] . "</td>";
   echo "</tr>";
   }
-  echo "</table>";
+  echo "</tbody></table>";
 	
   db_close($con);
   ?>
@@ -46,5 +49,6 @@
 
 <?php include "../Static/footer.php"; ?>
 
+<script src="/Static/sort.js"></script>
 </body>
 </html>
