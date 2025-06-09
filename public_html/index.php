@@ -6,11 +6,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#7866ae">
 <link rel="stylesheet" href="/Style/style.css">
-<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" href="/Static/favicon.png">
 </head>
 <body>
 
-<?php include "../Static/header.php"; ?>
+<?php include __DIR__.'/Static/header.php'; ?>
 
 <div class="content">
 <h1>Welcome to soundsphere.net</h1>
@@ -18,12 +18,11 @@
 	It can be accessed <a href="/HTML/cds.html">here</a>
 </p>
 <p>
-  There's also a section for my <a href="/HTML/modular.html">modular rig</a>, but that is just a screenshot at the moment. 
-  Testddd
+  There's also a section for my <a href="/HTML/modular.html">modular rig</a>, but that is just a screenshot at the moment.
 </p>
 </div>
 
-<?php include "../footer.php"; ?>
+<?php include __DIR__.'/Static/footer.php'; ?>
 
 
 </body>
