@@ -23,7 +23,8 @@
   $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
 
-  echo "<table>
+  echo "<input type='text' class='table-search' onkeyup=\"filterTable('waffleTable', this.value)\">\n";
+  echo "<table id='waffleTable'>
   <tr>
   <th>Number</th>
   <th>Artist</th>
@@ -46,5 +47,6 @@
 
 <?php include "../Static/footer.php"; ?>
 
+<script src="/Static/search.js"></script>
 </body>
 </html>

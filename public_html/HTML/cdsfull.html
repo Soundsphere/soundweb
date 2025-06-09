@@ -24,7 +24,8 @@
   $sql = "SELECT Artist, Album, Tracks, Genre, Label, Type, Package, Discs, AlbumRelease, CDRelease, Country, Comment, Created FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
 
-  echo "<table>
+  echo "<input type='text' class='table-search' onkeyup=\"filterTable('cdsFullTable', this.value)\">\n";
+  echo "<table id='cdsFullTable'>
         <thead>
           <tr>
             <th>Number</th>
@@ -73,5 +74,6 @@
 <?php include "../Static/footer.php"; ?>
 
 <script src="/Static/sort.js"></script>
+<script src="/Static/search.js"></script>
 </body>
 </html>

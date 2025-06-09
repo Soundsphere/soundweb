@@ -25,8 +25,9 @@
     $con = db_connect();
     $sql = "SELECT Manufacturer, Model, Type, Width, Depth, p12v, n12v FROM Stuff.Modules ORDER BY Manufacturer ASC";
     $result = db_query($con, $sql);
-  
-    echo "<table>
+
+    echo "<input type='text' class='table-search' onkeyup=\"filterTable('modularTable', this.value)\">\n";
+    echo "<table id='modularTable'>
           <thead>
             <tr>
               <th>Number</th>
@@ -91,5 +92,6 @@
 <?php include "../Static/footer.php"; ?>
 
 <script src="/Static/sort.js"></script>
+<script src="/Static/search.js"></script>
 </body>
 </html>

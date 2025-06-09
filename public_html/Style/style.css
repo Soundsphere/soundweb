@@ -119,3 +119,11 @@ div.smimages {
 /* sort icons for tables */
 th.sort-asc::after  { content: ' ▲'; }
 th.sort-desc::after { content: ' ▼'; }
+
+/* basic search input styling */
+input.table-search {
+  margin-bottom: 10px;
+  padding: 5px;
+  max-width: 300px;
+  width: 100%;
+}
