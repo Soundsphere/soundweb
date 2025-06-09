@@ -22,7 +22,8 @@
   </p>
   <br/>
   <?php
-  $con=mysqli_connect("94.130.179.170","soundsphere_ro","hZJEZFSBxeU4","Stuff");
+  require_once 'config.php';
+  $con=mysqli_connect($db_host,$db_user,$db_pass,$db_name);
   // Check connection
   if (mysqli_connect_errno())
   {
