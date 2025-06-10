@@ -26,7 +26,7 @@
     $sql = "SELECT Manufacturer, Model, Type, Width, Depth, p12v, n12v FROM Stuff.Modules ORDER BY Manufacturer ASC";
     $result = db_query($con, $sql);
 
-    echo "<input type='text' class='table-search' onkeyup=\"filterTable('modularTable', this.value)\">\n";
+    echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('modularTable', this.value)\">\n";
     echo "<table id='modularTable'>
           <thead>
             <tr>

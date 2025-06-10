@@ -23,7 +23,7 @@
   $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
 
-  echo "<input type='text' class='table-search' onkeyup=\"filterTable('waffleTable', this.value)\">\n";
+  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('waffleTable', this.value)\">\n";
   echo "<table id='waffleTable'>
   <tr>
   <th>Number</th>
