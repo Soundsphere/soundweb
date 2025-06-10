@@ -127,3 +127,19 @@ input.table-search {
   max-width: 300px;
   width: 100%;
 }
+
+/* layout for embedded videos on the modular page */
+div.Videos {
+  width: 100%;
+}
+
+div.Videos .video-row {
+  margin-bottom: 1em;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+div.Videos iframe {
+  width: 50%;
+  aspect-ratio: 16/9;
+}
