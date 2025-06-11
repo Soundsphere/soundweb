@@ -143,3 +143,16 @@ div.Videos iframe {
   width: 50%;
   aspect-ratio: 16/9;
 }
+
+/* styling for the modular grid image */
+div.image {
+  text-align: center;
+}
+
+div.image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
