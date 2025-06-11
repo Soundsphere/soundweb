@@ -8,6 +8,12 @@
 <meta name="theme-color" content="#7866ae">
 <link rel="stylesheet" href="/Style/style.css">
 <link rel="icon" type="image/png" href="/Static/favicon.png">
+<style>
+  /* Disable automatic row numbering for this table */
+  #cdsTable tr td:first-child::before {
+    content: none;
+  }
+</style>
 </head>
 <body>
 
@@ -28,7 +34,6 @@
   echo "<table id='cdsTable'>
         <thead>
           <tr>
-            <th>Number</th>
             <th>Artist</th>
             <th>Album</th>
           </tr>
@@ -38,7 +43,6 @@
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . '' . "</td>";
   echo "<td>" . $row['Artist'] . "</td>";
   echo "<td>" . $row['Album'] . "</td>";
   echo "</tr>";
