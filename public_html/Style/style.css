@@ -83,12 +83,14 @@ th {
   padding: 20px;
   text-align: left;
   border-bottom: 4px solid white;
+  font-size: 0.9rem;
 }
 
 /* table border style for the rows */
 td {
   padding: 15px;
   border-bottom: 1px solid white;
+  font-size: 0.9rem;
 }
 
 /* maybe I need this. Uncomment when needed, highlights row under mouse pointer
