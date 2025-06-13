@@ -20,9 +20,10 @@
 </br>
 <p>Some links:
 	<ul>
-		<li><a href="https://social.tchncs.de/@Soundsphere">Mastodon</a></li>
-		<li><a href="https://tube.tchncs.de/a/soundsphere/video-channels">Peertube</a></li>
-		<li><a href="https://www.youtube.com/@sndsphr">Youtube</a></li>
+		<li><a href="https://social.tchncs.de/@Soundsphere" target="_blank">Mastodon</a></li>
+		<li><a href="https://tube.tchncs.de/a/soundsphere/video-channels" target="_blank">Peertube</a></li>
+		<li><a href="https://www.youtube.com/@sndsphr" target="_blank">Youtube</a></li>
+		<li><a href="https://modulargrid.net/e/users/view/226567" target="_blank">ModularGrid</a></li>
 	</ul>
 </div>
 
