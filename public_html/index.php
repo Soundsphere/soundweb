@@ -15,12 +15,9 @@
 
 <div class="content">
 <h1>Welcome to soundsphere.net</h1>
-<p>This website displays my CD collection to avoid buying CDs twice.<br>
-	It can be accessed <a href="/HTML/cds.html">here</a>
-</p>
-<p>
-  There's also a section for my <a href="/HTML/modular.html">modular rig</a>, with a few example videos and a screenshot of my current rig from modular grid.
-</p>
+<p>A personal website so that I have my CD collection at hand everywhere to avoid buying CDs twice.</p>
+</br>
+<p>There are also other infos on here but for now it pretty sparse. I might grow over time</p>
 </div>
 
 <?php include __DIR__.'/Static/footer.php'; ?>
