@@ -16,7 +16,7 @@
 <div class="content">
 <h1>Welcome to soundsphere.net</h1>
 <p>A personal website so that I have my CD collection at hand everywhere to avoid buying CDs twice.</p>
-<p>There are also other infos on here but for now it pretty sparse. I might grow over time</p>
+<p>There are also other infos on here but for now it is pretty sparse. I might grow over time</p>
 </br>
 <p>Some links:
 	<ul>
