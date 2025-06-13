@@ -27,6 +27,12 @@
     $sql = "SELECT Manufacturer, Model, Type, Width, Depth, p12v, n12v FROM Stuff.Modules ORDER BY Manufacturer ASC";
     $result = db_query($con, $sql);
 
+    $sqlSum = "SELECT SUM(p12v) AS sum_p12v, SUM(n12v) AS sum_n12v FROM Stuff.Modules";
+    $sumResult = db_query($con, $sqlSum);
+    $sumRow = mysqli_fetch_array($sumResult);
+    $sum_p12v = $sumRow['sum_p12v'];
+    $sum_n12v = $sumRow['sum_n12v'];
+
     echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('modularTable', this.value)\">\n";
     echo "<table id='modularTable'>
           <thead>
@@ -37,8 +43,8 @@
               <th>Type</th>
               <th>Width in HP</th>
               <th>Depth in mm</th>
-              <th>+12v</th>
-              <th>-12v</th>
+              <th>+12v ({$sum_p12v} mA)</th>
+              <th>-12v ({$sum_n12v} mA)</th>
             </tr>
         </thead>
         <tbody>";
