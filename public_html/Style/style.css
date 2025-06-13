@@ -83,7 +83,7 @@ table tr td:first-child::before {
 
 /* zebra style. Every second row has different background colour */
 tr:nth-child(even) {
-  background-color: #100e14;
+  background-color: #2A2E36;
 }
 
 /* table header styling */
