@@ -45,16 +45,16 @@
   
     while($row = mysqli_fetch_array($result))
     {
-    echo "<tr>";
-    echo "<td>" . '' . "</td>";
-    echo "<td>" . $row['Manufacturer'] . "</td>";
-    echo "<td>" . $row['Model'] . "</td>";
-    echo "<td>" . $row['Type'] . "</td>";
-    echo "<td>" . $row['Width'] . "</td>";
-    echo "<td>" . $row['Depth'] . "</td>";
-    echo "<td>" . $row['p12v'] . "</td>";
-    echo "<td>" . $row['n12v'] . "</td>";
-    echo "</tr>";
+      echo "<tr>";
+      echo "<td>" . '' . "</td>";
+      echo "<td>" . $row['Manufacturer'] . "</td>";
+      echo "<td>" . $row['Model'] . "</td>";
+      echo "<td>" . $row['Type'] . "</td>";
+      echo "<td>" . $row['Width'] . "</td>";
+      echo "<td>" . $row['Depth'] . "</td>";
+      echo "<td>" . $row['p12v'] . "</td>";
+      echo "<td>" . $row['n12v'] . "</td>";
+      echo "</tr>";
     }
     echo "</tbody></table>";
     
