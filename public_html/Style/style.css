@@ -146,6 +146,18 @@ input.table-search {
   width: 100%;
 }
 
+/* container for search field and power totals */
+div.search-totals {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+span.power-total {
+  white-space: nowrap;
+}
+
 /* layout for embedded videos on the modular page */
 div.Videos {
   width: 100%;
