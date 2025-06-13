@@ -154,6 +154,16 @@ div.search-totals {
   margin-bottom: 10px;
 }
 
+div.search-field {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+div.search-field input.table-search {
+  margin-bottom: 0;
+}
+
 span.power-total {
   white-space: nowrap;
 }
