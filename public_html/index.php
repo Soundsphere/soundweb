@@ -16,8 +16,14 @@
 <div class="content">
 <h1>Welcome to soundsphere.net</h1>
 <p>A personal website so that I have my CD collection at hand everywhere to avoid buying CDs twice.</p>
-</br>
 <p>There are also other infos on here but for now it pretty sparse. I might grow over time</p>
+</br>
+<p>Some links:
+	<ul>
+		<li><a href="https://social.tchncs.de/@Soundsphere">Mastodon</a></li>
+		<li><a href="https://tube.tchncs.de/a/soundsphere/video-channels">Peertube</a></li>
+		<li><a href="https://www.youtube.com/@sndsphr">Youtube</a></li>
+	</ul>
 </div>
 
 <?php include __DIR__.'/Static/footer.php'; ?>
