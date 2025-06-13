@@ -55,6 +55,7 @@ div.content {
 div.content a {
   color: #886FC6;
   text-decoration: none;
+  line-height: inherit;
 }
 
 div.content a:hover {
