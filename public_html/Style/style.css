@@ -53,7 +53,14 @@ div.content {
 
 /* Style hyperlinks on my site */
 div.content a {
-  color: grey;
+  color: #886FC6;
+  text-decoration: none;
+}
+
+div.content a:hover {
+  color: #AE91F6;
+  background-color: transparent;
+  text-decoration: none;
 }
 
 /* set table width and start the counter for the rows */
