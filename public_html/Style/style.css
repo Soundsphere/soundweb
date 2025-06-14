@@ -20,7 +20,7 @@ div.topnav {
   position: fixed;
   overflow: hidden;
   background-color: #886FC6;
-  opacity: 0.9;
+  opacity: 1;
 }
 
 /* Style the topnav links */
@@ -35,7 +35,7 @@ div.topnav a {
 
 /* Change color on hover */
 div.topnav a:hover {
-  background-color: #6b5b95;
+  background-color: #AE91F6;
   color: white;
 }
 
@@ -115,7 +115,7 @@ div.footer {
   width: 100%;
   height: 40px;
   background-color: #886FC6;
-  opacity: 0.9;
+  opacity: 0.8;
   color: white;
   padding: 1px;
 }
