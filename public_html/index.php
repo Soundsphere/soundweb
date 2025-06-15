@@ -24,6 +24,7 @@
 		<li><a href="https://tube.tchncs.de/a/soundsphere/video-channels" target="_blank">Peertube</a></li>
 		<li><a href="https://www.youtube.com/@sndsphr" target="_blank">Youtube</a></li>
 		<li><a href="https://modulargrid.net/e/users/view/226567" target="_blank">ModularGrid</a></li>
+		<li><a href="https://bandcamp.com/soundsphere" target="_blank">Bandcamp</a></li>
 	</ul>
 </div>
 
