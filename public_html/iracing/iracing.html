@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>soundsphere.net - CDs</title>
+<title>soundsphere.net - iRacing</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -19,9 +19,26 @@
 
 <?php include "../Static/header.php"; ?>
 
+<?php
+// Load iRacing credentials
+include '../Static/iracinglogin.php';
+
+// Provide credentials to the stats script via environment variables
+putenv("IRACING_USER={$ir_user}");
+putenv("IRACING_PASS={$ir_pass}");
+putenv("IRACING_CUST_ID={$ir_id}");
+
+// Capture JSON output from the stats script
+ob_start();
+include '../Static/iracing.php';
+$statsJson = ob_get_clean();
+$stats = json_decode($statsJson, true);
+?>
+
 <div class="content">
-<h1>iRacing</h1>
-<p>WIP - Everything about iRacing</p>
+  <h1>iRacing</h1>
+  <p>iRating: <?php echo htmlspecialchars($stats['iRating'] ?? 'N/A'); ?></p>
+  <p>Safety Rating: <?php echo htmlspecialchars($stats['safetyRating'] ?? 'N/A'); ?></p>
 </div>
 
 <?php include "../Static/footer.php"; ?>
