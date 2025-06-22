@@ -1,9 +1,6 @@
 # Ignore sensitive configuration
 public_html/config.php
-public_html/iRacing/iracing_login.php
 **/config.php
-**/iracing_login.php
-
 # Ignore macOS Finder files
 *.DS_Store
 *.DS_store
