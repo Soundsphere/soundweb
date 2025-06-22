@@ -27,12 +27,15 @@
   require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
 
-  /* Fetch the most recent NewiRating value */
+  /* Fetch the most recent rating values */
   $ratingSql = "SELECT NewiRating, NewSafetyRating FROM Stuff.iRacing ORDER BY SessionDate DESC LIMIT 1";
   $ratingResult = db_query($con, $ratingSql);
   if ($row = mysqli_fetch_assoc($ratingResult)) {
     $latestRating = htmlspecialchars($row['NewiRating']);
     echo "<p>Current iRating: $latestRating</p>\n";
+
+    $latestSafety = htmlspecialchars($row['NewSafetyRating']);
+    echo "<p>Current Safety Rating: $latestSafety</p>\n";
   }
 
   $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace FROM Stuff.iRacing ORDER BY SessionDate DESC";
