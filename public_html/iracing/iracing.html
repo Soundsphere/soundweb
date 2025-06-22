@@ -25,9 +25,9 @@
   </p>
   <br/>
   <?php
-  require_once 'db.php';
+  require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
-  $sql = "SELECT SessionDate, SeriesName, Car, Track FROM Stuff.iRacing ORDER SessionDate DESC";
+  $sql = "SELECT SessionDate, SeriesName, Car, Track FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
   echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
