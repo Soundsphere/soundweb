@@ -28,7 +28,7 @@
   $con = db_connect();
 
   /* Fetch the most recent NewiRating value */
-  $ratingSql = "SELECT NewiRating FROM Stuff.iRacing ORDER BY SessionDate DESC LIMIT 1";
+  $ratingSql = "SELECT NewiRating, NewSafetyRating FROM Stuff.iRacing ORDER BY SessionDate DESC LIMIT 1";
   $ratingResult = db_query($con, $ratingSql);
   if ($row = mysqli_fetch_assoc($ratingResult)) {
     $latestRating = htmlspecialchars($row['NewiRating']);
