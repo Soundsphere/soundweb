@@ -27,7 +27,7 @@
   <?php
   require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
-  $sql = "SELECT SessionDate, SeriesName, Car, Track FROM Stuff.iRacing ORDER BY SessionDate DESC";
+  $sql = "SELECT SessionDate, SeriesName, Car, Track, SEC_TO_TIME(QualifyingTime / 10000) AS Qualifying FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
   echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
@@ -38,6 +38,7 @@
             <th>SeriesName</th>
             <th>Car</th>
             <th>Track</th>
+            <th>Qualifying</th>
           </tr>
         </thead>
         <tbody>";
@@ -49,6 +50,7 @@
   echo "<td>" . $row['SeriesName'] . "</td>";
   echo "<td>" . $row['Car'] . "</td>";
   echo "<td>" . $row['Track'] . "</td>";
+  echo "<td>" . $row['Qualifying'] . "</td>";
   echo "</tr>";
   }
   echo "</tbody></table>";
