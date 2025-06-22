@@ -23,10 +23,18 @@
   <h1>iRacing Data</h1>
   <p>An overview of my races over time
   </p>
-  <br/>
   <?php
   require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
+
+  /* Fetch the most recent NewiRating value */
+  $ratingSql = "SELECT NewiRating FROM Stuff.iRacing ORDER BY SessionDate DESC LIMIT 1";
+  $ratingResult = db_query($con, $ratingSql);
+  if ($row = mysqli_fetch_assoc($ratingResult)) {
+    $latestRating = htmlspecialchars($row['NewiRating']);
+    echo "<p>Current iRating: $latestRating</p>\n";
+  }
+
   $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
