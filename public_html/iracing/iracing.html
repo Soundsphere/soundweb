@@ -27,7 +27,7 @@
   <?php
   require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
-  $sql = "SELECT SessionDate, SeriesName, Car, Track, QualifyingTime, RaceTime FROM Stuff.iRacing ORDER BY SessionDate DESC";
+  $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
   echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
@@ -36,10 +36,18 @@
           <tr>
             <th>SessionDate</th>
             <th>SeriesName</th>
-            <th>Car</th>
             <th>Track</th>
+            <th>Car</th>
             <th>Qualifying</th>
             <th>Best Race Lap</th>
+            <th>Start</th>
+            <th>Finish</th>
+            <th>Incidents</th>
+            <th>Safety Rating</th>
+            <th>iRating</th>
+            <th>SoF</th>
+            <th>Points</th>
+            <th>Team Race</th>
           </tr>
         </thead>
         <tbody>";
@@ -47,16 +55,30 @@
   while($row = mysqli_fetch_array($result))
   {
     $qualifyingSeconds = $row['QualifyingTime'] / 10000;
-    $minutes = floor($qualifyingSeconds / 60);
-    $seconds = $qualifyingSeconds - ($minutes * 60);
-    $qualifyingFormatted = sprintf('%02d:%06.3f', $minutes, $seconds);
+    $qMinutes = floor($qualifyingSeconds / 60);
+    $qSeconds = $qualifyingSeconds - ($qMinutes * 60);
+    $qualifyingFormatted = sprintf('%02d:%06.3f', $qMinutes, $qSeconds);
+
+    $raceSeconds = $row['RaceTime'] / 10000;
+    $rMinutes = floor($raceSeconds / 60);
+    $rSeconds = $raceSeconds - ($rMinutes * 60);
+    $raceFormatted = sprintf('%02d:%06.3f', $rMinutes, $rSeconds);
 
     echo "<tr>";
     echo "<td>" . $row['SessionDate'] . "</td>";
     echo "<td>" . $row['SeriesName'] . "</td>";
-    echo "<td>" . $row['Car'] . "</td>";
     echo "<td>" . $row['Track'] . "</td>";
+    echo "<td>" . $row['Car'] . "</td>";
     echo "<td>" . $qualifyingFormatted . "</td>";
+    echo "<td>" . $raceFormatted . "</td>";
+    echo "<td>" . $row['StartPosition'] . "</td>";
+    echo "<td>" . $row['FinishPosition'] . "</td>";
+    echo "<td>" . $row['Incidents'] . "</td>";
+    echo "<td>" . $row['SafetyRatingGain'] . "</td>";
+    echo "<td>" . $row['iRatingGain'] . "</td>";
+    echo "<td>" . $row['SoF'] . "</td>";
+    echo "<td>" . $row['Points'] . "</td>";
+    echo "<td>" . $row['TeamRace'] . "</td>";
     echo "</tr>";
   }
   echo "</tbody></table>";
