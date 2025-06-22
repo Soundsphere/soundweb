@@ -27,7 +27,7 @@
   <?php
   require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
-  $sql = "SELECT SessionDate, SeriesName, Car, Track, QualifyingTime FROM Stuff.iRacing ORDER BY SessionDate DESC";
+  $sql = "SELECT SessionDate, SeriesName, Car, Track, QualifyingTime, RaceTime FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
   echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
@@ -39,6 +39,7 @@
             <th>Car</th>
             <th>Track</th>
             <th>Qualifying</th>
+            <th>Best Race Lap</th>
           </tr>
         </thead>
         <tbody>";
