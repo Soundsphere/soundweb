@@ -10,7 +10,7 @@
 <link rel="icon" type="image/png" href="/Static/favicon.png">
 <style>
   /* Disable automatic row numbering for this table */
-  #cdsTable tr td:first-child::before {
+  #iRacingTable tr td:first-child::before {
     content: none;
   }
 </style>
@@ -19,26 +19,42 @@
 
 <?php include "../Static/header.php"; ?>
 
-<?php
-// Load iRacing credentials
-include '../Static/iracing_login.php';
-
-// Provide credentials to the stats script via environment variables
-putenv("IRACING_USER={$ir_user}");
-putenv("IRACING_PASS={$ir_pass}");
-putenv("IRACING_CUST_ID={$ir_id}");
-
-// Capture JSON output from the stats script
-ob_start();
-include '../Static/iracing.php';
-$statsJson = ob_get_clean();
-$stats = json_decode($statsJson, true);
-?>
-
 <div class="content">
-  <h1>iRacing</h1>
-  <p>iRating: <?php echo htmlspecialchars($stats['iRating'] ?? 'N/A'); ?></p>
-  <p>Safety Rating: <?php echo htmlspecialchars($stats['safetyRating'] ?? 'N/A'); ?></p>
+  <h1>iRacing Data</h1>
+  <p>An overview of my races over time
+  </p>
+  <br/>
+  <?php
+  require_once 'db.php';
+  $con = db_connect();
+  $sql = "SELECT SessionDate, SeriesName, Car, Track FROM Stuff.iRacing ORDER SessionDate DESC";
+  $result = db_query($con, $sql);
+
+  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
+  echo "<table id='iRacingTable'>
+        <thead>
+          <tr>
+            <th>SessionDate</th>
+            <th>SeriesName</th>
+            <th>Car</th>
+            <th>Track</th>
+          </tr>
+        </thead>
+        <tbody>";
+
+  while($row = mysqli_fetch_array($result))
+  {
+  echo "<tr>";
+  echo "<td>" . $row['SessionDate'] . "</td>";
+  echo "<td>" . $row['SeriesName'] . "</td>";
+  echo "<td>" . $row['Car'] . "</td>";
+  echo "<td>" . $row['Track'] . "</td>";
+  echo "</tr>";
+  }
+  echo "</tbody></table>";
+  
+  db_close($con);
+  ?>
 </div>
 
 <?php include "../Static/footer.php"; ?>
