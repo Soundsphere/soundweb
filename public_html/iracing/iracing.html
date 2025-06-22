@@ -32,16 +32,17 @@
   $ratingResult = db_query($con, $ratingSql);
   if ($row = mysqli_fetch_assoc($ratingResult)) {
     $latestRating = htmlspecialchars($row['NewiRating']);
-    echo "<p>Current iRating: $latestRating</p>\n";
+    echo "<p>Current iRating: $latestRating\n"</p>";
 
     $latestSafety = htmlspecialchars($row['NewSafetyRating']);
     echo "<p>Current Safety Rating: $latestSafety</p>\n";
   }
 
+
   $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
-  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
+  echo "Search Races: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
   echo "<table id='iRacingTable'>
         <thead>
           <tr>
