@@ -32,7 +32,7 @@
   $ratingResult = db_query($con, $ratingSql);
   if ($row = mysqli_fetch_assoc($ratingResult)) {
     $latestRating = htmlspecialchars($row['NewiRating']);
-    echo "<p>Current iRating: $latestRating\n"</p>";
+    echo "<p>Current iRating: $latestRating</p>\n";
 
     $latestSafety = htmlspecialchars($row['NewSafetyRating']);
     echo "<p>Current Safety Rating: $latestSafety</p>\n";
