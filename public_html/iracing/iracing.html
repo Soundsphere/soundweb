@@ -47,9 +47,14 @@
   while($row = mysqli_fetch_array($result))
   {
     $qualifyingSeconds = $row['QualifyingTime'] / 10000;
-    $minutes = floor($qualifyingSeconds / 60);
-    $seconds = $qualifyingSeconds - ($minutes * 60);
-    $qualifyingFormatted = sprintf('%02d:%06.3f', $minutes, $seconds);
+    $qMinutes = floor($qualifyingSeconds / 60);
+    $qSeconds = $qualifyingSeconds - ($qMinutes * 60);
+    $qualifyingFormatted = sprintf('%02d:%06.3f', $qMinutes, $qSeconds);
+
+    $raceSeconds = $row['RaceTime'] / 10000;
+    $rMinutes = floor($raceSeconds / 60);
+    $rSeconds = $raceSeconds - ($rMinutes * 60);
+    $raceFormatted = sprintf('%02d:%06.3f', $rMinutes, $rSeconds);
 
     echo "<tr>";
     echo "<td>" . $row['SessionDate'] . "</td>";
@@ -57,6 +62,7 @@
     echo "<td>" . $row['Car'] . "</td>";
     echo "<td>" . $row['Track'] . "</td>";
     echo "<td>" . $qualifyingFormatted . "</td>";
+    echo "<td>" . $raceFormatted . "</td>";
     echo "</tr>";
   }
   echo "</tbody></table>";
