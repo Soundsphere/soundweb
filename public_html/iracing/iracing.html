@@ -39,7 +39,7 @@
   }
 
 
-  $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace,  QualiSetByTeammate FROM Stuff.iRacing ORDER BY SessionDate DESC";
+  $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace,  QualiSetByTeammate, FastestLapSetByTeammate FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
   echo "Search Races: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
@@ -62,6 +62,7 @@
             <th>Points</th>
             <th>Team</th>
             <th>Quali by Teammate</th>
+            <th>FL Teammate</th>
           </tr>
         </thead>
         <tbody>";
@@ -95,6 +96,7 @@
     echo "<td>" . $row['Points'] . "</td>";
     echo "<td>" . $row['TeamRace'] . "</td>";
     echo "<td>" . $row['QualiSetByTeammate'] . "</td>";
+    echo "<td>" . $row['FastestLapSetByTeammate'] . "</td>";
     echo "</tr>";
   }
   echo "</tbody></table>";
