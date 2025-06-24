@@ -65,8 +65,13 @@ div.content a:hover {
 }
 
 /* highlight the Sports Car header in race type tables */
+th.sports-car {
+  background-color: #AE91F6;
+  color: white;
+}
+
 th.sports-car a {
-  color: #AE91F6;
+  color: white;
 }
 
 /* set table width and start the counter for the rows */
