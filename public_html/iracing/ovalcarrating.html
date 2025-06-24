@@ -60,7 +60,7 @@
   foreach ($raceTypes as $type => $link) {
     $safeLink = htmlspecialchars($link);
     $thClass = ($type === 'Oval') ? " class='oval'" : '';
-    echo "<th><a href='$safeLink'>$type</a></th>";
+    echo "<th$thClass><a href='$safeLink'>$type</a></th>";
   }
   echo "</tr></thead><tbody><tr>";
   foreach ($raceTypes as $type => $link) {
