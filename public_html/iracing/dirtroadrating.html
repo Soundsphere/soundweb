@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>soundsphere.net - dirtroadrating</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#886FC6">
+<link rel="stylesheet" href="/Style/style.css">
+<link rel="icon" type="image/png" href="/Static/favicon.png">
+<style>
+  /* Space below the rating chart */
+  .irating-chart {
+    margin-bottom: 2em;
+  }
+</style>
+</head>
+<body>
+
+<?php include "../Static/header.php"; ?>
+
+<div class="content">
+  <h1>iRacing Dirt Road Rating</h1>
+  <?php
+  require_once __DIR__ . '/../HTML/db.php';
+  $con = db_connect();
+
+  /* Fetch the most recent rating values */
+  $ratingSql = "SELECT NewiRating, NewSafetyRating FROM Stuff.iRacing WHERE RaceType = 'Dirt Road' ORDER BY SessionDate DESC LIMIT 1";
+  $ratingResult = db_query($con, $ratingSql);
+  if ($row = mysqli_fetch_assoc($ratingResult)) {
+    $latestRating = htmlspecialchars($row['NewiRating']);
+    echo "<p>Current iRating: $latestRating</p>\n";
+
+    $latestSafety = htmlspecialchars($row['NewSafetyRating']);
+    echo "<p>Current Safety Rating: $latestSafety</p>\n";
+  }
+
+  /* Fetch full rating history for the graph */
+  $historySql = "SELECT SessionDate, NewiRating FROM Stuff.iRacing WHERE RaceType = 'Dirt Road' ORDER BY SessionDate DESC";
+  $historyResult = db_query($con, $historySql);
+  $chartDates = [];
+  $chartRatings = [];
+  while ($historyRow = mysqli_fetch_assoc($historyResult)) {
+    $chartDates[] = date('d/m/Y', strtotime($historyRow['SessionDate']));
+    $chartRatings[] = (int)$historyRow['NewiRating'];
+  }
+
+  $datesJson = json_encode(array_reverse($chartDates));
+  $ratingsJson = json_encode(array_reverse($chartRatings));
+  // Reduce chart height to 75% of the default (150px -> ~112px)
+  echo "<div class='irating-chart'><canvas id=\"iRatingChart\" height=\"100%\"></canvas></div>\n<br><br>\n";
+
+
+  db_close($con);
+
+  ?>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  const iratingLabels = <?php echo $datesJson; ?>;
+  const iratingValues = <?php echo $ratingsJson; ?>;
+  document.addEventListener('DOMContentLoaded', function () {
+    new Chart(document.getElementById('iRatingChart'), {
+      type: 'line',
+      data: {
+        labels: iratingLabels,
+        datasets: [{
+          label: 'iRating',
+          data: iratingValues,
+          borderColor: '#886FC6',
+          backgroundColor: 'rgba(136,111,198,0.2)',
+          fill: false
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            ticks: {
+              maxRotation: 90,
+              minRotation: 45
+            }
+          }
+        }
+      }
+    });
+  });
+  </script>
+</div>
+
+<?php include "../Static/footer.php"; ?>
+
+</body>
+</html>
