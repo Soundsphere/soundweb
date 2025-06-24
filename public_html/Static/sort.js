@@ -27,6 +27,10 @@ function sortTable(table, column, asc = true) {
 
 window.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('table').forEach(table => {
+        // Skip tables marked with the 'no-sort' class
+        if (table.classList.contains('no-sort')) {
+            return;
+        }
         table.querySelectorAll('th').forEach((th, index) => {
             th.addEventListener('click', () => {
                 const asc = !th.classList.contains('sort-asc');
