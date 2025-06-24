@@ -134,9 +134,10 @@ div.smimages p {
   line-height: 0;
 }
 
-/* sort icons for tables */
-th.sort-asc::after  { content: ' ▲'; }
-th.sort-desc::after { content: ' ▼'; }
+/* sort icons for sortable tables only */
+table:not(.no-sort) th.sort-asc::after  { content: ' ▲'; }
+table:not(.no-sort) th.sort-desc::after { content: ' ▼'; }
+
 
 /* basic search input styling */
 input.table-search {
