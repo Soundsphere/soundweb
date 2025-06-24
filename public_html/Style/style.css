@@ -64,6 +64,11 @@ div.content a:hover {
   text-decoration: none;
 }
 
+/* highlight the Sports Car header in race type tables */
+th.sports-car a {
+  color: #AE91F6;
+}
+
 /* set table width and start the counter for the rows */
 table {
   width: 100%;
