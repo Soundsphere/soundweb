@@ -37,6 +37,7 @@ div.topnav a {
 div.topnav a:hover {
   background-color: #AE91F6;
   color: white;
+  border-radius: 6px;
 }
 
 /* Style the content */
@@ -68,6 +69,7 @@ div.content a:hover {
 th.sports-car {
   background-color: #AE91F6;
   color: white;
+  border-radius: 6px;
 }
 
 th.sports-car a {
@@ -78,6 +80,7 @@ th.sports-car a {
 th.formula-car {
   background-color: #AE91F6;
   color: white;
+  border-radius: 6px;
 }
 
 th.formula-car a {
@@ -88,6 +91,7 @@ th.formula-car a {
 th.oval {
   background-color: #AE91F6;
   color: white;
+  border-radius: 6px;
 }
 
 th.oval a {
@@ -98,16 +102,18 @@ th.oval a {
 th.dirt-oval {
   background-color: #AE91F6;
   color: white;
+  border-radius: 6px;
 }
 
 th.dirt-oval a {
   color: white;
 }
 
-/* highlight the Dir Road header in race type tables */
+/* highlight the Dirt Road header in race type tables */
 th.dirt-road {
   background-color: #AE91F6;
   color: white;
+  border-radius: 6px;
 }
 
 th.dirt-road a {
@@ -195,6 +201,8 @@ input.table-search {
   padding: 5px;
   max-width: 300px;
   width: 100%;
+  border-color: #886FC6;
+  border-radius: 6px;
 }
 
 /* layout for embedded videos on the modular page */
@@ -211,6 +219,7 @@ div.Videos .video-row {
 div.Videos iframe {
   width: 50%;
   aspect-ratio: 16/9;
+  border-radius: 6px;
 }
 
 /* styling for the modular grid image */
@@ -224,4 +233,5 @@ div.image img {
   display: block;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 6px;
 }
