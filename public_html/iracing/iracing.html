@@ -14,6 +14,12 @@
   #iRacingTable tr td:first-child::before {
     content: none;
   }
+
+  /* centre the rating summary values */
+  #ratingSummary th,
+  #ratingSummary td {
+    text-align: center;
+  }
 </style>
 </head>
 <body>
@@ -49,12 +55,15 @@
   }
   echo "</tr></thead><tbody><tr>";
   foreach ($raceTypes as $type => $link) {
+    $display = '-';
     if ($ratings[$type]) {
-      $ir = htmlspecialchars($ratings[$type]['NewiRating']);
-      $sr = htmlspecialchars($ratings[$type]['NewSafetyRating']);
-      $display = "$ir | $sr";
-    } else {
-      $display = 'N/A';
+      $irVal = $ratings[$type]['NewiRating'];
+      $srVal = $ratings[$type]['NewSafetyRating'];
+      if (!empty($irVal) && $irVal != 0 && !empty($srVal) && $srVal != 0) {
+        $ir = 'iRating ' . htmlspecialchars($irVal);
+        $sr = 'Safety Rating ' . htmlspecialchars($srVal);
+        $display = "$ir | $sr";
+      }
     }
     echo "<td>$display</td>";
   }
