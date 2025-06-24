@@ -95,7 +95,7 @@ th.oval a {
 }
 
 /* highlight the Dirt Oval header in race type tables */
-th.dirt-Oval {
+th.dirt-oval {
   background-color: #AE91F6;
   color: white;
 }
