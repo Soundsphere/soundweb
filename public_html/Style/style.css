@@ -74,6 +74,46 @@ th.sports-car a {
   color: white;
 }
 
+/* highlight the Formula Car header in race type tables */
+th.formula-car {
+  background-color: #AE91F6;
+  color: white;
+}
+
+th.formula-car a {
+  color: white;
+}
+
+/* highlight the Oval header in race type tables */
+th.oval {
+  background-color: #AE91F6;
+  color: white;
+}
+
+th.oval a {
+  color: white;
+}
+
+/* highlight the Dirt Oval header in race type tables */
+th.dirt-Oval {
+  background-color: #AE91F6;
+  color: white;
+}
+
+th.dirt-oval a {
+  color: white;
+}
+
+/* highlight the Dir Road header in race type tables */
+th.dirt-road {
+  background-color: #AE91F6;
+  color: white;
+}
+
+th.dirt-road a {
+  color: white;
+}
+
 /* set table width and start the counter for the rows */
 table {
   width: 100%;
