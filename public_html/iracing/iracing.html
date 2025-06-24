@@ -61,13 +61,13 @@
   }
   echo "</tr></thead><tbody><tr>";
   foreach ($raceTypes as $type => $link) {
-    $display = '-';
+    $display = 'no races';
     if ($ratings[$type]) {
       $irVal = $ratings[$type]['NewiRating'];
       $srVal = $ratings[$type]['NewSafetyRating'];
       if (!empty($irVal) && $irVal != 0 && !empty($srVal) && $srVal != 0) {
-        $ir = 'iRating ' . htmlspecialchars($irVal);
-        $sr = 'Safety Rating ' . htmlspecialchars($srVal);
+        $ir = 'iRating: ' . htmlspecialchars($irVal);
+        $sr = 'Safety Rating: ' . htmlspecialchars($srVal);
         $display = "$ir | $sr";
       }
     }
