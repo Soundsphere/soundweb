@@ -9,6 +9,23 @@
 <link rel="stylesheet" href="/Style/style.css">
 <link rel="icon" type="image/png" href="/Static/favicon.png">
 <style>
+  /* Disable automatic row numbering for rating table */
+  #ratingSummary tr td:first-child::before {
+    content: none;
+  }
+
+  /* layout for rating summary table */
+  #ratingSummary {
+    width: 60%;
+    margin: 0 auto;
+  }
+
+  /* centre the rating summary values */
+  #ratingSummary th,
+  #ratingSummary td {
+    text-align: center;
+  }
+
   /* Space below the rating chart */
   .irating-chart {
     margin-bottom: 2em;
@@ -25,16 +42,40 @@
   require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
 
-  /* Fetch the most recent rating values */
-  $ratingSql = "SELECT NewiRating, NewSafetyRating FROM Stuff.iRacing WHERE RaceType = 'Sports Car' ORDER BY SessionDate DESC LIMIT 1";
-  $ratingResult = db_query($con, $ratingSql);
-  if ($row = mysqli_fetch_assoc($ratingResult)) {
-    $latestRating = htmlspecialchars($row['NewiRating']);
-    echo "<p>Current iRating: $latestRating</p>\n";
-
-    $latestSafety = htmlspecialchars($row['NewSafetyRating']);
-    echo "<p>Current Safety Rating: $latestSafety</p>\n";
+  $raceTypes = [
+    'Oval' => 'ovalcarrating.html',
+    'Formula Car' => 'formulacarrating.html',
+    'Sports Car' => 'sportscarrating.html',
+    'Dirt Oval' => 'dirtovalrating.html',
+    'Dirt Road' => 'dirtroadrating.html'
+  ];
+  $ratings = [];
+  foreach ($raceTypes as $type => $link) {
+    $ratingSql = "SELECT NewiRating, NewSafetyRating FROM Stuff.iRacing WHERE RaceType = '$type' ORDER BY SessionDate DESC LIMIT 1";
+    $ratingResult = db_query($con, $ratingSql);
+    $ratings[$type] = mysqli_fetch_assoc($ratingResult);
   }
+
+  echo "<table id='ratingSummary' class='no-sort'>\n<thead><tr>";
+  foreach ($raceTypes as $type => $link) {
+    $safeLink = htmlspecialchars($link);
+    echo "<th><a href='$safeLink'>$type</a></th>";
+  }
+  echo "</tr></thead><tbody><tr>";
+  foreach ($raceTypes as $type => $link) {
+    $display = 'no races';
+    if ($ratings[$type]) {
+      $irVal = $ratings[$type]['NewiRating'];
+      $srVal = $ratings[$type]['NewSafetyRating'];
+      if (!empty($irVal) && $irVal != 0 && !empty($srVal) && $srVal != 0) {
+        $ir = 'iRating: ' . htmlspecialchars($irVal);
+        $sr = 'Safety Rating: ' . htmlspecialchars($srVal);
+        $display = "$ir | $sr";
+      }
+    }
+    echo "<td>$display</td>";
+  }
+  echo "</tr></tbody></table>\n<br><br>\n";
 
   /* Fetch full rating history for the graph */
   $historySql = "SELECT SessionDate, NewiRating FROM Stuff.iRacing WHERE RaceType = 'Sports Car' ORDER BY SessionDate DESC";
