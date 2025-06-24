@@ -37,7 +37,7 @@
   }
 
   /* Fetch full rating history for the graph */
-  $historySql = "SELECT SessionDate, NewiRating FROM Stuff.iRacing WHERE RaceType = 'Oval Car' ORDER BY SessionDate DESC";
+  $historySql = "SELECT SessionDate, NewiRating FROM Stuff.iRacing WHERE RaceType = 'Oval' ORDER BY SessionDate DESC";
   $historyResult = db_query($con, $historySql);
   $chartDates = [];
   $chartRatings = [];
