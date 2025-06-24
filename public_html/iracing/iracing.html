@@ -9,7 +9,8 @@
 <link rel="stylesheet" href="/Style/style.css">
 <link rel="icon" type="image/png" href="/Static/favicon.png">
 <style>
-  /* Disable automatic row numbering for this table */
+  /* Disable automatic row numbering for rating and race tables */
+  #ratingSummary tr td:first-child::before,
   #iRacingTable tr td:first-child::before {
     content: none;
   }
@@ -26,6 +27,38 @@
   <?php
   require_once __DIR__ . '/../HTML/db.php';
   $con = db_connect();
+
+  $raceTypes = [
+    'Oval' => 'ovalcarrating.html',
+    'Formula Car' => 'formulacarrating.html',
+    'Sports Car' => 'sportscarrating.html',
+    'Dirt Oval' => 'dirtoval.html',
+    'Dirt Road' => 'dirtroad.html'
+  ];
+  $ratings = [];
+  foreach ($raceTypes as $type => $link) {
+    $ratingSql = "SELECT NewiRating, NewSafetyRating FROM Stuff.iRacing WHERE RaceType = '$type' ORDER BY SessionDate DESC LIMIT 1";
+    $ratingResult = db_query($con, $ratingSql);
+    $ratings[$type] = mysqli_fetch_assoc($ratingResult);
+  }
+
+  echo "<table id='ratingSummary'>\n<thead><tr>";
+  foreach ($raceTypes as $type => $link) {
+    $safeLink = htmlspecialchars($link);
+    echo "<th><a href='$safeLink'>$type</a></th>";
+  }
+  echo "</tr></thead><tbody><tr>";
+  foreach ($raceTypes as $type => $link) {
+    if ($ratings[$type]) {
+      $ir = htmlspecialchars($ratings[$type]['NewiRating']);
+      $sr = htmlspecialchars($ratings[$type]['NewSafetyRating']);
+      $display = "$ir | $sr";
+    } else {
+      $display = 'N/A';
+    }
+    echo "<td>$display</td>";
+  }
+  echo "</tr></tbody></table>\n<br><br>\n";
 
   $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace,  QualiSetByTeammate, FastestLapSetByTeammate FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
