@@ -54,7 +54,8 @@
 
   $datesJson = json_encode(array_reverse($chartDates));
   $ratingsJson = json_encode(array_reverse($chartRatings));
-  echo "<div class='irating-chart'><canvas id=\"iRatingChart\"></canvas></div>\n<br><br>\n";
+  // Reduce chart height to 75% of the default (150px -> ~112px)
+  echo "<div class='irating-chart'><canvas id=\"iRatingChart\" height=\"112\"></canvas></div>\n<br><br>\n";
 
 
   $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace,  QualiSetByTeammate, FastestLapSetByTeammate FROM Stuff.iRacing ORDER BY SessionDate DESC";
