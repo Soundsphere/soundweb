@@ -48,7 +48,7 @@
     $ratings[$type] = mysqli_fetch_assoc($ratingResult);
   }
 
-  echo "<table id='ratingSummary'>\n<thead><tr>";
+  echo "<table id='ratingSummary' class='no-sort'>\n<thead><tr>";
   foreach ($raceTypes as $type => $link) {
     $safeLink = htmlspecialchars($link);
     echo "<th><a href='$safeLink'>$type</a></th>";
