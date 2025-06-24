@@ -38,6 +38,16 @@
     echo "<p>Current Safety Rating: $latestSafety</p>\n";
   }
 
+  /* Fetch full rating history for the graph */
+  $historySql = "SELECT SessionDate, NewiRating FROM Stuff.iRacing ORDER BY SessionDate DESC";
+  $historyResult = db_query($con, $historySql);
+  $chartDates = [];
+  $chartRatings = [];
+  while ($historyRow = mysqli_fetch_assoc($historyResult)) {
+    $chartDates[] = date('d/m/Y', strtotime($historyRow['SessionDate']));
+    $chartRatings[] = (int)$historyRow['NewiRating'];
+  }
+
 
   $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace,  QualiSetByTeammate, FastestLapSetByTeammate FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
@@ -100,9 +110,45 @@
     echo "</tr>";
   }
   echo "</tbody></table>";
-  
+
   db_close($con);
+
+  $datesJson = json_encode(array_reverse($chartDates));
+  $ratingsJson = json_encode(array_reverse($chartRatings));
   ?>
+  <div>
+    <canvas id="iRatingChart"></canvas>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+  const iratingLabels = <?php echo $datesJson; ?>;
+  const iratingValues = <?php echo $ratingsJson; ?>;
+  document.addEventListener('DOMContentLoaded', function () {
+    new Chart(document.getElementById('iRatingChart'), {
+      type: 'line',
+      data: {
+        labels: iratingLabels,
+        datasets: [{
+          label: 'iRating',
+          data: iratingValues,
+          borderColor: '#886FC6',
+          backgroundColor: 'rgba(136,111,198,0.2)',
+          fill: false
+        }]
+      },
+      options: {
+        scales: {
+          x: {
+            ticks: {
+              maxRotation: 90,
+              minRotation: 45
+            }
+          }
+        }
+      }
+    });
+  });
+  </script>
 </div>
 
 <?php include "../Static/footer.php"; ?>
