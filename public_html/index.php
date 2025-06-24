@@ -25,6 +25,7 @@
 		<li><a href="https://www.youtube.com/@sndsphr" target="_blank">Youtube</a></li>
 		<li><a href="https://modulargrid.net/e/users/view/226567" target="_blank">ModularGrid</a></li>
 		<li><a href="https://bandcamp.com/soundsphere" target="_blank">Bandcamp</a></li>
+		<li><a href="https://github.com/Soundsphere" target="_blank">Github</a></li>
 	</ul>
 </div>
 
