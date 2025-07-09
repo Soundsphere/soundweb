@@ -21,14 +21,17 @@
 
 <div class="content">
   <h1>CD Collection</h1>
-  <p>Overview, full database <a href='/HTML/cdsfull.html'>here</a>
-  </p>
-  <br/>
   <?php
   require_once 'db.php';
   $con = db_connect();
   $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
+  $rowCount = mysqli_num_rows($result);
+  ?>
+  <p>Overview of <?php echo $rowCount; ?>, full database <a href='/HTML/cdsfull.html'>here</a>
+  </p>
+  <br/>
+  <?php
 
   echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('cdsTable', this.value)\">\n";
   echo "<table id='cdsTable'>
