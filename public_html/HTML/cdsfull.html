@@ -18,10 +18,25 @@
   <h1>CD Collection</h1>
   <p>Full database, the condensed list is <a href='/HTML/cds.html'>here</a>
   </p>
-  <br/>
   <?php
   require_once 'db.php';
   $con = db_connect();
+
+  $totalSql = "SELECT COUNT(*) AS Total FROM Stuff.CDs";
+  $totalRes = db_query($con, $totalSql);
+  $totalRow = mysqli_fetch_array($totalRes);
+  $totalCount = $totalRow['Total'];
+
+  $typeSql = "SELECT COUNT(Type) AS Count, Type FROM Stuff.CDs GROUP BY Type ORDER BY Count DESC";
+  $typeRes = db_query($con, $typeSql);
+  $typeParts = [];
+  while($row = mysqli_fetch_array($typeRes)) {
+    $typeParts[] = $row['Count'] . ' ' . $row['Type'];
+  }
+  echo '<p>Of ' . $totalCount . ' CDs, there are ' . implode(', ', $typeParts) . '.</p>';
+  ?>
+  <br/>
+  <?php
   $sql = "SELECT Artist, Album, Tracks, Genre, Label, Type, Package, Discs, AlbumRelease, CDRelease, Country, Comment, Created FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
 
