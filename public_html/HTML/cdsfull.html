@@ -30,8 +30,12 @@
   $typeSql = "SELECT COUNT(Type) AS Count, Type FROM Stuff.CDs GROUP BY Type ORDER BY Count DESC";
   $typeRes = db_query($con, $typeSql);
   $typeParts = [];
-  while($row = mysqli_fetch_array($typeRes)) {
-    $typeParts[] = $row['Count'] . ' ' . $row['Type'];
+  while ($row = mysqli_fetch_array($typeRes)) {
+    $typeName = $row['Type'];
+    if ($row['Count'] > 1) {
+      $typeName .= 's';
+    }
+    $typeParts[] = $row['Count'] . ' ' . $typeName;
   }
   echo '<p>Of ' . $totalCount . ' CDs, there are ' . implode(', ', $typeParts) . '.</p>';
   ?>
