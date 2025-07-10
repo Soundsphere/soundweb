@@ -9,8 +9,9 @@
 <link rel="stylesheet" href="/Style/style.css">
 <link rel="icon" type="image/png" href="/Static/favicon.png">
 <style>
-  /* Disable automatic row numbering for rating and race tables */
+  /* Disable automatic row numbering for rating, averages, and race tables */
   #ratingSummary tr td:first-child::before,
+  #averagesTable tr td:first-child::before,
   #iRacingTable tr td:first-child::before {
     content: none;
   }
@@ -18,6 +19,12 @@
   /* layout for rating summary table */
   #ratingSummary {
     width: 60%;
+    margin: 0 auto;
+  }
+
+  /* layout for averages table */
+  #averagesTable {
+    width: 100%;
     margin: 0 auto;
   }
 
@@ -74,9 +81,46 @@
   }
   echo "</tr></tbody></table>\n<br><br>\n";
 
+  // Query average statistics per race type
+  $avgSql = "SELECT COUNT(RaceType) AS RaceTypes, RaceType, ROUND(AVG(SoF),0) AS `Average SoF`, ROUND(AVG(NewiRating),0) AS `Average iRating`, ROUND(AVG(NewSafetyRating),2) AS `Average Safety Rating`, ROUND(AVG(Incidents),2) AS Incidents, ROUND(AVG(StartPosition),0) AS `Starting Position`, ROUND(AVG(FinishPosition),0) AS `Finish Position`, ROUND(AVG(Points),0) AS Points, SUM(LapsLed) AS `Laps Led`, SUM(Laps) AS `Laps Driven` FROM Stuff.iRacing GROUP BY RaceType ORDER BY COUNT(RaceType) DESC";
+  $avgResult = db_query($con, $avgSql);
+
+  echo "<h2>Averages</h2>\n";
+  echo "<table id='averagesTable' class='no-sort'>\n<thead><tr>";
+  echo "<th>Race Type</th>";
+  echo "<th>Races</th>";
+  echo "<th>Avg SoF</th>";
+  echo "<th>Avg iRating</th>";
+  echo "<th>Avg Safety Rating</th>";
+  echo "<th>Avg Incidents</th>";
+  echo "<th>Avg Starting Position</th>";
+  echo "<th>Avg Finish Position</th>";
+  echo "<th>Avg Points</th>";
+  echo "<th>Laps Led</th>";
+  echo "<th>Laps Driven</th>";
+  echo "</tr></thead><tbody>";
+
+  while ($avgRow = mysqli_fetch_assoc($avgResult)) {
+    echo "<tr>";
+    echo "<td>" . htmlspecialchars($avgRow['RaceType']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['RaceTypes']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Average SoF']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Average iRating']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Average Safety Rating']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Incidents']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Starting Position']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Finish Position']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Points']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Laps Led']) . "</td>";
+    echo "<td>" . htmlspecialchars($avgRow['Laps Driven']) . "</td>";
+    echo "</tr>";
+  }
+  echo "</tbody></table>\n<br><br>\n";
+
   $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace,  QualiSetByTeammate, FastestLapSetByTeammate FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
+  echo "<h2>Recent Races</h2>\n";
   echo "Search Races: <input type='text' class='table-search' onkeyup=\"filterTable('iRacingTable', this.value)\">\n";
   echo "<table id='iRacingTable'>
         <thead>
