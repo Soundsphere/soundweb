@@ -117,7 +117,9 @@
   }
   echo "</tbody></table>\n<br><br>\n";
 
-  $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points, TeamRace,  QualiSetByTeammate, FastestLapSetByTeammate FROM Stuff.iRacing ORDER BY SessionDate DESC";
+
+  // the actual table. Uncomment these and upload to website to get team information
+  $sql = "SELECT SessionDate, SeriesName, Track, Car, QualifyingTime, RaceTime, StartPosition, FinishPosition, Laps, Incidents, SafetyRatingGain, iRatingGain, SoF, Points FROM Stuff.iRacing ORDER BY SessionDate DESC";
   $result = db_query($con, $sql);
 
   echo "<h2>Recent Races</h2>\n";
@@ -139,9 +141,6 @@
             <th>iRating</th>
             <th>SoF</th>
             <th>Points</th>
-            <th>Team</th>
-            <th>Quali Teammate</th>
-            <th>FL Teammate</th>
           </tr>
         </thead>
         <tbody>";
@@ -173,9 +172,6 @@
     echo "<td>" . $row['iRatingGain'] . "</td>";
     echo "<td>" . $row['SoF'] . "</td>";
     echo "<td>" . $row['Points'] . "</td>";
-    echo "<td>" . $row['TeamRace'] . "</td>";
-    echo "<td>" . $row['QualiSetByTeammate'] . "</td>";
-    echo "<td>" . $row['FastestLapSetByTeammate'] . "</td>";
     echo "</tr>";
   }
   echo "</tbody></table>";
