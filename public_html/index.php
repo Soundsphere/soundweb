@@ -16,7 +16,7 @@
 <div class="content">
 <h1>Welcome to soundsphere.net</h1>
 <p>A personal website to have a central place for several things I'm interested in. If you came across this site, enjoy the nothingness of it.</p>
-<p>It should also be appearent that I'm not a designer</p>
+<p>It should also be apparent that I'm not a designer</p>
 </br>
 <p>Some links:
 	<ul>
