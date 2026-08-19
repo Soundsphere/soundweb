@@ -22,20 +22,21 @@
 <div class="content">
   <h1>Nagellack</h1>
   <?php
-  require_once 'db.php';
+  require_once '../HTML/db.php';
   $con = db_connect();
   $sql = "SELECT Hersteller, Name, Farbe, Menge FROM Stuff.Nagellack ORDER BY Hersteller ASC";
   $result = db_query($con, $sql);
   $rowCount = mysqli_num_rows($result);
   ?>
 <!-- add any text here later in <p></p> tags -->
+ <p>Username: Name deines Hundes<br/>Password: Meine Lieblingsfarbe<br/>Alles klein</p>
   <p><a href="https://n8n.soundsphere.net/form/85820e04-6e0a-4bd3-b5e2-1a6359c45dd4" style="display: inline-block; padding: 8px 18px; background-color: #AE91F6; color: white; text-decoration: none; border-radius: 12px;">Yay! Neuer Nagellack!</a>
 
 </p>
   <br/>
   <?php
   
-  echo "Hab ich schon?: <input type='text' class='table-search' onkeyup=\"filterTable('nagellacktable', this.value)\">\n";
+  echo "Hab ich schon? <input type='text' class='table-search' onkeyup=\"filterTable('nagellacktable', this.value)\">\n";
   echo "<table id='nagellacktable'>
         <thead>
           <tr>
