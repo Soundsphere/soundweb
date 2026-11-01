@@ -55,11 +55,3 @@ function db_close($con)
 {
     mysqli_close($con);
 }
-
-/**
- * Escape a value for safe output in HTML.
- */
-function e($value)
-{
-    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
-}

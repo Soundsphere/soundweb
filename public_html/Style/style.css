@@ -8,19 +8,18 @@ general stuff */
 body {
   margin: 0;
   padding: 0;
-  height: 100%;
   background-color: #1e2127;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
-/* Style the top navigation bar */
+/* Style the top navigation bar. Sticky instead of fixed so it takes up
+its own space and the content never slides under it, even when the links
+wrap onto a second line on small screens */
 div.topnav {
-  width: 100%;
-  float: left;
-  position: fixed;
+  position: sticky;
+  top: 0;
+  z-index: 10;
   overflow: hidden;
   background-color: #886FC6;
-  opacity: 1;
 }
 
 /* Style the topnav links */
@@ -40,15 +39,13 @@ div.topnav a:hover {
   border-radius: 6px;
 }
 
-/* Style the content */
+/* Style the content. The bottom padding keeps the last lines clear of
+the fixed footer */
 div.content {
   width: 100%;
   background-color: #1e2127;
-  padding: 15px;
-  padding-left: 20px;
-  bottom: 60px;
+  padding: 15px 20px 60px;
   color: white;
-  padding-top: 50px;
   line-height: 1.7;
 }
 
@@ -65,76 +62,56 @@ div.content a:hover {
   text-decoration: none;
 }
 
-/* highlight the Sports Car header in race type tables */
-th.sports-car {
+/* call-to-action link styled as a button */
+div.content a.button,
+div.content a.button:hover {
+  display: inline-block;
+  padding: 8px 18px;
   background-color: #AE91F6;
   color: white;
-  border-radius: 6px;
+  border-radius: 12px;
 }
 
-th.sports-car a {
-  color: white;
-}
-
-/* highlight the Formula Car header in race type tables */
-th.formula-car {
-  background-color: #AE91F6;
-  color: white;
-  border-radius: 6px;
-}
-
-th.formula-car a {
-  color: white;
-}
-
-/* highlight the Oval header in race type tables */
-th.oval {
-  background-color: #AE91F6;
-  color: white;
-  border-radius: 6px;
-}
-
-th.oval a {
-  color: white;
-}
-
-/* highlight the Dirt Oval header in race type tables */
-th.dirt-oval {
-  background-color: #AE91F6;
-  color: white;
-  border-radius: 6px;
-}
-
-th.dirt-oval a {
-  color: white;
-}
-
-/* highlight the Dirt Road header in race type tables */
+/* highlight the current race type header in race type tables */
+th.sports-car,
+th.formula-car,
+th.oval,
+th.dirt-oval,
 th.dirt-road {
   background-color: #AE91F6;
   color: white;
   border-radius: 6px;
 }
 
+th.sports-car a,
+th.formula-car a,
+th.oval a,
+th.dirt-oval a,
 th.dirt-road a {
   color: white;
 }
 
-/* set table width and start the counter for the rows */
-table {
-  width: 100%;
-  counter-reset: row-num -1;
-  padding-bottom: 60px;
+/* wide tables scroll sideways on small screens instead of overflowing */
+div.table-wrap {
+  overflow-x: auto;
 }
 
-/* row counter for the table rows */
-table tr {
+table {
+  width: 100%;
+}
+
+/* row numbers for tables with class="numbered". Counted with CSS so they
+stay 1, 2, 3... after sorting or searching */
+table.numbered tbody {
+  counter-reset: row-num;
+}
+
+table.numbered tbody tr {
   counter-increment: row-num;
 }
 
-/* start counter on the second entry of the table to avoid counting header */
-table tr td:first-child::before {
-    content: counter(row-num) ". ";
+table.numbered td.row-num::before {
+  content: counter(row-num) ". ";
 }
 
 /* zebra style. Every second row has different background colour */
@@ -166,12 +143,10 @@ td:hover {
 /* Style the footer */
 div.footer {
   position: fixed;
-  float: left;
   bottom: 0;
   width: 100%;
   height: 35px;
   background-color: #886FC6;
-  opacity: 1;
   color: white;
   padding: 1px;
 }
@@ -190,9 +165,18 @@ div.smimages p {
   line-height: 0;
 }
 
-/* sort icons for sortable tables only */
-table:not(.no-sort) th.sort-asc::after  { content: ' ▲'; }
-table:not(.no-sort) th.sort-desc::after { content: ' ▼'; }
+/* sortable headers: pointer, keyboard focus ring and sort icons */
+th.sortable {
+  cursor: pointer;
+}
+
+th.sortable:focus-visible {
+  outline: 2px solid #AE91F6;
+  outline-offset: -2px;
+}
+
+th.sort-asc::after  { content: ' ▲'; }
+th.sort-desc::after { content: ' ▼'; }
 
 
 /* basic search input styling */
@@ -220,6 +204,13 @@ div.Videos iframe {
   width: 50%;
   aspect-ratio: 16/9;
   border-radius: 6px;
+}
+
+/* stack the videos on narrow screens */
+@media (max-width: 700px) {
+  div.Videos iframe {
+    width: 100%;
+  }
 }
 
 /* styling for the modular grid image */

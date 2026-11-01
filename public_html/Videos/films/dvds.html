@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>soundsphere.net - Film DVDs</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#886FC6">
-<link rel="stylesheet" href="/Style/style.css">
-<link rel="icon" type="image/png" href="/Static/favicon.png">
-<style>
-  /* Disable automatic row numbering for this table */
-  #dvdTable tr td:first-child::before {
-    content: none;
-  }
-</style>
-</head>
-<body>
-
-<?php include __DIR__ . "/../../Static/header.php"; ?>
+<?php $title = 'Film DVDs'; include __DIR__ . '/../../Static/head.php'; ?>
 
 <div class="content">
   <h1>DVD Collection</h1>
@@ -26,37 +7,14 @@
   $con = db_connect();
   $sql = "SELECT Name, Medium, Jahr FROM Stuff.Filme WHERE Medium = 'DVD' ORDER BY Name ASC";
   $result = db_query($con, $sql);
-  ?>
-  <?php
 
-  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('dvdTable', this.value)\">\n";
-  echo "<table id='dvdTable'>
-        <thead>
-          <tr>
-            <th>Name</th>
-            <th>Medium</th>
-            <th>Year</th>
-          </tr>
-        </thead>
-        <tbody>";
+  render_table($result, 'dvdTable', ['Name' => 'Name', 'Medium' => 'Medium', 'Jahr' => 'Year']);
 
-  while($row = mysqli_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . e($row['Name']) . "</td>";
-  echo "<td>" . e($row['Medium']) . "</td>";
-    echo "<td>" . e($row['Jahr']) . "</td>";
-  echo "</tr>";
-  }
-  echo "</tbody></table>";
-	
   db_close($con);
   ?>
 </div>
 
-<?php include __DIR__ . "/../../Static/footer.php"; ?>
+<?php include __DIR__ . '/../../Static/footer.php'; ?>
 
-<script src="/Static/sort.js"></script>
-<script src="/Static/search.js"></script>
 </body>
 </html>

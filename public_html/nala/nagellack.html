@@ -1,23 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>soundsphere.net - Nagellack</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#886FC6">
-<link rel="stylesheet" href="/Style/style.css">
-<link rel="icon" type="image/png" href="/Static/favicon.png">
-<style>
-  /* Disable automatic row numbering for this table */
-  #nagellacktable tr td:first-child::before {
-    content: none;
-  }
-</style>
-</head>
-<body>
-
-<?php include "../Static/header.php"; ?>
+<?php $title = 'Nagellack'; include __DIR__ . '/../Static/head.php'; ?>
 
 <div class="content">
   <h1>Nagellack</h1>
@@ -28,42 +9,21 @@
   $result = db_query($con, $sql);
   ?>
 <!-- add any text here later in <p></p> tags -->
-  <p><a href="https://n8n.soundsphere.net/form/85820e04-6e0a-4bd3-b5e2-1a6359c45dd4" style="display: inline-block; padding: 8px 18px; background-color: #AE91F6; color: white; text-decoration: none; border-radius: 12px;">Yay! Neuer Nagellack!</a>
-
-</p>
-  <br/>
+  <p><a class="button" href="https://n8n.soundsphere.net/form/85820e04-6e0a-4bd3-b5e2-1a6359c45dd4">Yay! Neuer Nagellack!</a></p>
+  <br>
   <?php
-  
-  echo "Hab ich schon? <input type='text' class='table-search' onkeyup=\"filterTable('nagellacktable', this.value)\">\n";
-  echo "<table id='nagellacktable'>
-        <thead>
-          <tr>
-            <th>Hersteller</th>
-            <th>Name</th>
-            <th>Farbe</th>
-            <th>Menge (ml)</th>
-          </tr>
-        </thead>
-        <tbody>";
-
-  while($row = mysqli_fetch_array($result))
-  {
-    echo "<tr>";
-    echo "<td>" . e($row['Hersteller']) . "</td>";
-    echo "<td>" . e($row['Name']) . "</td>";
-    echo "<td>" . e($row['Farbe']) . "</td>";
-    echo "<td>" . e($row['Menge']) . "</td>";
-    echo "</tr>";
-  }
-  echo "</tbody></table>";
+  render_table($result, 'nagellacktable', [
+    'Hersteller' => 'Hersteller',
+    'Name' => 'Name',
+    'Farbe' => 'Farbe',
+    'Menge' => 'Menge (ml)',
+  ], false, 'Hab ich schon?');
 
   db_close($con);
   ?>
 </div>
 
-<?php include "../Static/footer.php"; ?>
+<?php include __DIR__ . '/../Static/footer.php'; ?>
 
-<script src="/Static/sort.js"></script>
-<script src="/Static/search.js"></script>
 </body>
 </html>
