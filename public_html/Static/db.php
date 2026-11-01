@@ -10,7 +10,8 @@ function db_connect()
 {
     $con = mysqli_connect($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_pass'], $GLOBALS['db_name']);
     if (mysqli_connect_errno()) {
-        die('Failed to connect to MySQL: ' . mysqli_connect_error());
+        error_log('Failed to connect to MySQL: ' . mysqli_connect_error());
+        die('Database unavailable.');
     }
     return $con;
 }
@@ -29,7 +30,8 @@ function db_query($con, $sql, $types = '', $params = [])
 {
     $stmt = mysqli_prepare($con, $sql);
     if (!$stmt) {
-        die('Query prepare failed: ' . mysqli_error($con));
+        error_log('Query prepare failed: ' . mysqli_error($con));
+        die('Database error.');
     }
 
     if ($types && !empty($params)) {
@@ -49,4 +51,12 @@ function db_query($con, $sql, $types = '', $params = [])
 function db_close($con)
 {
     mysqli_close($con);
+}
+
+/**
+ * Escape a value for safe output in HTML.
+ */
+function e($value)
+{
+    return htmlspecialchars((string) $value, ENT_QUOTES, 'UTF-8');
 }

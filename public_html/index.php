@@ -17,8 +17,8 @@
 <h1>Welcome to soundsphere.net</h1>
 <p>A personal website to have a central place for several things I'm interested in. If you came across this site, enjoy the nothingness of it.</p>
 <p>It should also be apparent that I'm not a designer</p>
-</br>
-<p>Some links:
+<br>
+<p>Some links:</p>
 	<ul>
 		<li><a href="https://social.tchncs.de/@Soundsphere" target="_blank">Mastodon</a></li>
 		<li><a href="https://tube.tchncs.de/a/soundsphere/video-channels" target="_blank">Peertube</a></li>

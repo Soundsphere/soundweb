@@ -31,7 +31,7 @@
   $typeRes = db_query($con, $typeSql);
   $typeParts = [];
   while ($row = mysqli_fetch_array($typeRes)) {
-    $typeName = $row['Type'];
+    $typeName = e($row['Type']);
     if ($row['Count'] > 1) {
       $typeName .= 's';
     }
@@ -70,19 +70,19 @@
   {
     echo "<tr>";
     echo "<td>" . '' . "</td>";
-    echo "<td>" . $row['Artist'] . "</td>";
-    echo "<td>" . $row['Album'] . "</td>";
-    echo "<td>" . $row['Tracks'] . "</td>";
-    echo "<td>" . $row['Genre'] . "</td>";
-    echo "<td>" . $row['Label'] . "</td>";
-    echo "<td>" . $row['Type'] . "</td>";
-    echo "<td>" . $row['Package'] . "</td>";
-    echo "<td>" . $row['Discs'] . "</td>";
-    echo "<td>" . $row['AlbumRelease'] . "</td>";
-    echo "<td>" . $row['CDRelease'] . "</td>";
-    echo "<td>" . $row['Country'] . "</td>";
-    echo "<td>" . $row['Comment'] . "</td>";
-    echo "<td>" . $row['Created'] . "</td>";
+    echo "<td>" . e($row['Artist']) . "</td>";
+    echo "<td>" . e($row['Album']) . "</td>";
+    echo "<td>" . e($row['Tracks']) . "</td>";
+    echo "<td>" . e($row['Genre']) . "</td>";
+    echo "<td>" . e($row['Label']) . "</td>";
+    echo "<td>" . e($row['Type']) . "</td>";
+    echo "<td>" . e($row['Package']) . "</td>";
+    echo "<td>" . e($row['Discs']) . "</td>";
+    echo "<td>" . e($row['AlbumRelease']) . "</td>";
+    echo "<td>" . e($row['CDRelease']) . "</td>";
+    echo "<td>" . e($row['Country']) . "</td>";
+    echo "<td>" . e($row['Comment']) . "</td>";
+    echo "<td>" . e($row['Created']) . "</td>";
     echo "</tr>";
   }
   echo "</tbody></table>";

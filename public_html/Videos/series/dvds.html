@@ -20,13 +20,12 @@
 <?php include __DIR__ . "/../../Static/header.php"; ?>
 
 <div class="content">
-  <h1>DVD Collection</h1>
+  <h1>Series DVD Collection</h1>
   <?php
   require_once __DIR__ . '/../../Static/db.php';
   $con = db_connect();
   $sql = "SELECT Name, Medium FROM Stuff.Serien WHERE Medium = 'DVD' ORDER BY Name ASC";
   $result = db_query($con, $sql);
-  $rowCount = mysqli_num_rows($result);
   ?>
   <?php
 
@@ -43,8 +42,8 @@
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . $row['Name'] . "</td>";
-  echo "<td>" . $row['Medium'] . "</td>";
+  echo "<td>" . e($row['Name']) . "</td>";
+  echo "<td>" . e($row['Medium']) . "</td>";
   echo "</tr>";
   }
   echo "</tbody></table>";
