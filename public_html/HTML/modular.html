@@ -1,17 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>soundsphere.net - Modular</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#886FC6">
-<link rel="stylesheet" href="/Style/style.css">
-<link rel="icon" type="image/png" href="/Static/favicon.png">
-</head>
-<body>
-
-<?php include "../Static/header.php"; ?>
+<?php $title = 'Modular'; include __DIR__ . '/../Static/head.php'; ?>
 
 <div class="content">
   <h1>Modular Synthesizer</h1>
@@ -20,7 +7,7 @@
     <p>Overview of the modules in my modular rig</p>
     <br>
     <?php
-    require_once '../Static/db.php';
+    require_once __DIR__ . '/../Static/db.php';
     $con = db_connect();
     $sql = "SELECT Manufacturer, Model, Type, Width, Depth, p12v, n12v FROM Stuff.Modules ORDER BY Manufacturer ASC";
     $result = db_query($con, $sql);
@@ -28,47 +15,24 @@
     $sqlSum = "SELECT SUM(p12v) AS sum_p12v, SUM(n12v) AS sum_n12v FROM Stuff.Modules";
     $sumResult = db_query($con, $sqlSum);
     $sumRow = mysqli_fetch_array($sumResult);
-    $sum_p12v = $sumRow['sum_p12v'];
-    $sum_n12v = $sumRow['sum_n12v'];
 
-    echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('modularTable', this.value)\">\n";
-    echo "<table id='modularTable'>
-          <thead>
-            <tr>
-              <th>Number</th>
-              <th>Company</th>
-              <th>Model</th>
-              <th>Type</th>
-              <th>Width in HP</th>
-              <th>Depth in mm</th>
-              <th>+12v ({$sum_p12v} mA)</th>
-              <th>-12v ({$sum_n12v} mA)</th>
-            </tr>
-        </thead>
-        <tbody>";
-  
-    while($row = mysqli_fetch_array($result))
-    {
-      echo "<tr>";
-      echo "<td>" . '' . "</td>";
-      echo "<td>" . e($row['Manufacturer']) . "</td>";
-      echo "<td>" . e($row['Model']) . "</td>";
-      echo "<td>" . e($row['Type']) . "</td>";
-      echo "<td>" . e($row['Width']) . "</td>";
-      echo "<td>" . e($row['Depth']) . "</td>";
-      echo "<td>" . e($row['p12v']) . "</td>";
-      echo "<td>" . e($row['n12v']) . "</td>";
-      echo "</tr>";
-    }
-    echo "</tbody></table>";
-    
+    render_table($result, 'modularTable', [
+      'Manufacturer' => 'Company',
+      'Model' => 'Model',
+      'Type' => 'Type',
+      'Width' => 'Width in HP',
+      'Depth' => 'Depth in mm',
+      'p12v' => "+12v ({$sumRow['sum_p12v']} mA)",
+      'n12v' => "-12v ({$sumRow['sum_n12v']} mA)",
+    ], true);
+
     db_close($con);
     ?>
   </div>
   <!-- modular grid image of current synth -->
   <h2>Current Modular Rig</h2>
   <p>
-    This is my current modular rig which you can find in detail at <a href="https://modulargrid.net/e/racks/view/2405183" target="_blank">ModularGrid</a>
+    This is my current modular rig which you can find in detail at <a href="https://modulargrid.net/e/racks/view/2405183" target="_blank" rel="noopener">ModularGrid</a>
   </p>
 
   <div class="image">
@@ -92,9 +56,7 @@
     <br>
 </div>
 
-<?php include "../Static/footer.php"; ?>
+<?php include __DIR__ . '/../Static/footer.php'; ?>
 
-<script src="/Static/sort.js"></script>
-<script src="/Static/search.js"></script>
 </body>
 </html>

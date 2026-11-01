@@ -1,25 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>soundsphere.net - CDs Full</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#886FC6">
-<link rel="stylesheet" href="/Style/style.css">
-<link rel="icon" type="image/png" href="/Static/favicon.png">
-</head>
-<body>
-
-<?php include "../Static/header.php"; ?>
-
+<?php $title = 'CDs Full'; include __DIR__ . '/../Static/head.php'; ?>
 
 <div class="content">
   <h1>CD Collection</h1>
   <p>Full database, the condensed list is <a href='/Music/cds.html'>here</a>
   </p>
   <?php
-  require_once '../Static/db.php';
+  require_once __DIR__ . '/../Static/db.php';
   $con = db_connect();
 
   $totalSql = "SELECT COUNT(*) AS Total FROM Stuff.CDs";
@@ -39,61 +25,32 @@
   }
   echo '<p>Of ' . $totalCount . ' CDs, there are ' . implode(', ', $typeParts) . '.</p>';
   ?>
-  <br/>
+  <br>
   <?php
   $sql = "SELECT Artist, Album, Tracks, Genre, Label, Type, Package, Discs, AlbumRelease, CDRelease, Country, Comment, Created FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
 
-  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('cdsFullTable', this.value)\">\n";
-  echo "<table id='cdsFullTable'>
-        <thead>
-          <tr>
-            <th>Number</th>
-            <th>Artist</th>
-            <th>Album</th>
-            <th>Tracks</th>
-            <th>Genre</th>
-            <th>Label</th>
-            <th>Type</th>
-            <th>Package</th>
-            <th>Discs</th>
-            <th>AlbumRelease</th>
-            <th>CDRelease</th>
-            <th>Country</th>
-            <th>Comment</th>
-            <th>Added</th>
-          </tr>
-        </thead>
-        <tbody>";
-
-  while($row = mysqli_fetch_array($result))
-  {
-    echo "<tr>";
-    echo "<td>" . '' . "</td>";
-    echo "<td>" . e($row['Artist']) . "</td>";
-    echo "<td>" . e($row['Album']) . "</td>";
-    echo "<td>" . e($row['Tracks']) . "</td>";
-    echo "<td>" . e($row['Genre']) . "</td>";
-    echo "<td>" . e($row['Label']) . "</td>";
-    echo "<td>" . e($row['Type']) . "</td>";
-    echo "<td>" . e($row['Package']) . "</td>";
-    echo "<td>" . e($row['Discs']) . "</td>";
-    echo "<td>" . e($row['AlbumRelease']) . "</td>";
-    echo "<td>" . e($row['CDRelease']) . "</td>";
-    echo "<td>" . e($row['Country']) . "</td>";
-    echo "<td>" . e($row['Comment']) . "</td>";
-    echo "<td>" . e($row['Created']) . "</td>";
-    echo "</tr>";
-  }
-  echo "</tbody></table>";
+  render_table($result, 'cdsFullTable', [
+    'Artist' => 'Artist',
+    'Album' => 'Album',
+    'Tracks' => 'Tracks',
+    'Genre' => 'Genre',
+    'Label' => 'Label',
+    'Type' => 'Type',
+    'Package' => 'Package',
+    'Discs' => 'Discs',
+    'AlbumRelease' => 'AlbumRelease',
+    'CDRelease' => 'CDRelease',
+    'Country' => 'Country',
+    'Comment' => 'Comment',
+    'Created' => 'Added',
+  ], true);
 
   db_close($con);
   ?>
 </div>
 
-<?php include "../Static/footer.php"; ?>
+<?php include __DIR__ . '/../Static/footer.php'; ?>
 
-<script src="/Static/sort.js"></script>
-<script src="/Static/search.js"></script>
 </body>
 </html>

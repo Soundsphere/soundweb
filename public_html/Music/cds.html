@@ -1,28 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>soundsphere.net - CDs</title>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="robots" content="noindex">
-<meta name="theme-color" content="#886FC6">
-<link rel="stylesheet" href="/Style/style.css">
-<link rel="icon" type="image/png" href="/Static/favicon.png">
-<style>
-  /* Disable automatic row numbering for this table */
-  #cdsTable tr td:first-child::before {
-    content: none;
-  }
-</style>
-</head>
-<body>
-
-<?php include "../Static/header.php"; ?>
+<?php $title = 'CDs'; include __DIR__ . '/../Static/head.php'; ?>
 
 <div class="content">
   <h1>CD Collection</h1>
   <?php
-  require_once '../Static/db.php';
+  require_once __DIR__ . '/../Static/db.php';
   $con = db_connect();
   $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);
@@ -30,35 +11,14 @@
   ?>
   <p>Overview of <?php echo $rowCount; ?> CDs, full database <a href='/Music/cdsfull.html'>here</a>
   </p>
-  <br/>
+  <br>
   <?php
-
-  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('cdsTable', this.value)\">\n";
-  echo "<table id='cdsTable'>
-        <thead>
-          <tr>
-            <th>Artist</th>
-            <th>Album</th>
-          </tr>
-        </thead>
-        <tbody>";
-
-  while($row = mysqli_fetch_array($result))
-  {
-  echo "<tr>";
-  echo "<td>" . e($row['Artist']) . "</td>";
-  echo "<td>" . e($row['Album']) . "</td>";
-  echo "</tr>";
-  }
-  echo "</tbody></table>";
-	
+  render_table($result, 'cdsTable', ['Artist' => 'Artist', 'Album' => 'Album']);
   db_close($con);
   ?>
 </div>
 
-<?php include "../Static/footer.php"; ?>
+<?php include __DIR__ . '/../Static/footer.php'; ?>
 
-<script src="/Static/sort.js"></script>
-<script src="/Static/search.js"></script>
 </body>
 </html>
