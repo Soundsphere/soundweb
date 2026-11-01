@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>soundsphere.net - CDs</title>
+<title>soundsphere.net - Film DVDs</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -10,35 +10,33 @@
 <link rel="icon" type="image/png" href="/Static/favicon.png">
 <style>
   /* Disable automatic row numbering for this table */
-  #cdsTable tr td:first-child::before {
+  #dvdTable tr td:first-child::before {
     content: none;
   }
 </style>
 </head>
 <body>
 
-<?php include "../Static/header.php"; ?>
+<?php include __DIR__ . "/../../Static/header.php"; ?>
 
 <div class="content">
-  <h1>CD Collection</h1>
+  <h1>DVD Collection</h1>
   <?php
-  require_once 'db.php';
+  require_once __DIR__ . '/../../Static/db.php';
   $con = db_connect();
-  $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
+  $sql = "SELECT Name, Medium, Jahr FROM Stuff.Filme WHERE Medium = 'DVD' ORDER BY Name ASC";
   $result = db_query($con, $sql);
   $rowCount = mysqli_num_rows($result);
   ?>
-  <p>Overview of <?php echo $rowCount; ?> CDs, full database <a href='/HTML/cdsfull.html'>here</a>
-  </p>
-  <br/>
   <?php
 
-  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('cdsTable', this.value)\">\n";
-  echo "<table id='cdsTable'>
+  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('dvdTable', this.value)\">\n";
+  echo "<table id='dvdTable'>
         <thead>
           <tr>
-            <th>Artist</th>
-            <th>Album</th>
+            <th>Name</th>
+            <th>Medium</th>
+            <th>Year</th>
           </tr>
         </thead>
         <tbody>";
@@ -46,8 +44,9 @@
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . $row['Artist'] . "</td>";
-  echo "<td>" . $row['Album'] . "</td>";
+  echo "<td>" . $row['Name'] . "</td>";
+  echo "<td>" . $row['Medium'] . "</td>";
+    echo "<td>" . $row['Jahr'] . "</td>";
   echo "</tr>";
   }
   echo "</tbody></table>";
@@ -56,7 +55,7 @@
   ?>
 </div>
 
-<?php include "../Static/footer.php"; ?>
+<?php include __DIR__ . "/../../Static/footer.php"; ?>
 
 <script src="/Static/sort.js"></script>
 <script src="/Static/search.js"></script>

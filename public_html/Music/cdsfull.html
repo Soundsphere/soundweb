@@ -16,10 +16,10 @@
 
 <div class="content">
   <h1>CD Collection</h1>
-  <p>Full database, the condensed list is <a href='/HTML/cds.html'>here</a>
+  <p>Full database, the condensed list is <a href='/Music/cds.html'>here</a>
   </p>
   <?php
-  require_once 'db.php';
+  require_once '../Static/db.php';
   $con = db_connect();
 
   $totalSql = "SELECT COUNT(*) AS Total FROM Stuff.CDs";

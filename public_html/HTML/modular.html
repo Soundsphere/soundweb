@@ -22,7 +22,7 @@
     <p>Overview of the modules in my modular rig</p>
     </br>
     <?php
-    require_once 'db.php';
+    require_once '../Static/db.php';
     $con = db_connect();
     $sql = "SELECT Manufacturer, Model, Type, Width, Depth, p12v, n12v FROM Stuff.Modules ORDER BY Manufacturer ASC";
     $result = db_query($con, $sql);

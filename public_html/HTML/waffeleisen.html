@@ -19,7 +19,7 @@
   </p>
   <br/>
   <?php
-  require_once 'db.php';
+  require_once '../Static/db.php';
   $con = db_connect();
   $sql = "SELECT Artist, Album FROM Stuff.CDs ORDER BY Artist, AlbumRelease ASC";
   $result = db_query($con, $sql);

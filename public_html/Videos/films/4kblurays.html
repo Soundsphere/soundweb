@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>soundsphere.net - Films</title>
+<title>soundsphere.net - Film 4k Blu-Rays</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -10,28 +10,28 @@
 <link rel="icon" type="image/png" href="/Static/favicon.png">
 <style>
   /* Disable automatic row numbering for this table */
-  #filmeTable tr td:first-child::before {
+  #blurayTable tr td:first-child::before {
     content: none;
   }
 </style>
 </head>
 <body>
 
-<?php include "../Static/header.php"; ?>
+<?php include __DIR__ . "/../../Static/header.php"; ?>
 
 <div class="content">
-  <h1>Film Collection</h1>
+  <h1>4k Blu-Ray Collection</h1>
   <?php
-  require_once 'db.php';
+  require_once __DIR__ . '/../../Static/db.php';
   $con = db_connect();
-  $sql = "SELECT Name, Medium, Jahr FROM Stuff.Filme ORDER BY Name ASC";
+  $sql = "SELECT Name, Medium, Jahr FROM Stuff.Filme WHERE Medium = '4k Blu-Ray' ORDER BY Name ASC";
   $result = db_query($con, $sql);
   $rowCount = mysqli_num_rows($result);
   ?>
   <?php
 
-  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('filmeTable', this.value)\">\n";
-  echo "<table id='filmeTable'>
+  echo "Search: <input type='text' class='table-search' onkeyup=\"filterTable('blurayTable', this.value)\">\n";
+  echo "<table id='blurayTable'>
         <thead>
           <tr>
             <th>Name</th>
@@ -55,7 +55,7 @@
   ?>
 </div>
 
-<?php include "../Static/footer.php"; ?>
+<?php include __DIR__ . "/../../Static/footer.php"; ?>
 
 <script src="/Static/sort.js"></script>
 <script src="/Static/search.js"></script>
