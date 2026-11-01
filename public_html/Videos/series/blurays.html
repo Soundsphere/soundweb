@@ -20,13 +20,12 @@
 <?php include __DIR__ . "/../../Static/header.php"; ?>
 
 <div class="content">
-  <h1>Blu-Ray Collection</h1>
+  <h1>Series Blu-Ray Collection</h1>
   <?php
   require_once __DIR__ . '/../../Static/db.php';
   $con = db_connect();
   $sql = "SELECT Name, Medium FROM Stuff.Serien WHERE Medium = 'Blu-Ray' ORDER BY Name ASC";
   $result = db_query($con, $sql);
-  $rowCount = mysqli_num_rows($result);
   ?>
   <?php
 

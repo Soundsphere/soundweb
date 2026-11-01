@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>soundsphere.net - CDs</title>
+<title>soundsphere.net - Modular</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="robots" content="noindex">
@@ -14,13 +14,11 @@
 <?php include "../Static/header.php"; ?>
 
 <div class="content">
-  <p>
-    <h1>Modular Synthesizer</h1>
-  </p>
+  <h1>Modular Synthesizer</h1>
   <!-- module database table -->
   <div class="moduleList">
     <p>Overview of the modules in my modular rig</p>
-    </br>
+    <br>
     <?php
     require_once '../Static/db.php';
     $con = db_connect();
@@ -68,9 +66,7 @@
     ?>
   </div>
   <!-- modular grid image of current synth -->
-  <p>
-    <h2>Current Modular Rig</h2>
-  </p>
+  <h2>Current Modular Rig</h2>
   <p>
     This is my current modular rig which you can find in detail at <a href="https://modulargrid.net/e/racks/view/2405183" target="_blank">ModularGrid</a>
   </p>
@@ -80,8 +76,8 @@
       <img src="/Static/modulargrid.jpg" alt="modular grid screenshot">
     </p>
   </div>
-  </br>
-  <!-- some vidoes from peertube -->
+  <br>
+  <!-- some videos from peertube -->
   <div class="Videos">
     <h2>Some Videos</h2>
     <div class="video-row">
@@ -93,9 +89,7 @@
       <iframe title="Glitch - Arturia MiniBrute 2S and Arturia DrumBrute Impact Only" width="560" height="315" src="https://tube.tchncs.de/videos/embed/goNdtDwK5SFPfcfd2HorVS" frameborder="0" allowfullscreen="" sandbox="allow-same-origin allow-scripts allow-popups allow-forms"></iframe>
     </div>
   </div>
-    <p>
-    </br>
-    </p>
+    <br>
 </div>
 
 <?php include "../Static/footer.php"; ?>
