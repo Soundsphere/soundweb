@@ -1,1 +1,10 @@
 DirectoryIndex index.php
+
+# Run .php and .html/.htm pages through PHP 8.5 (applies to all subfolders)
+FcgidWrapper "/home/httpd/cgi-bin/php85-fcgi-starter.fcgi" .php
+FcgidWrapper "/home/httpd/cgi-bin/php85-fcgi-starter.fcgi" .html
+FcgidWrapper "/home/httpd/cgi-bin/php85-fcgi-starter.fcgi" .htm
+<FilesMatch "\.(html|htm)$">
+ SetHandler fcgid-script
+</FilesMatch>
+php_flag  log_errors on
