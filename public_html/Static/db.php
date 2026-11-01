@@ -8,12 +8,14 @@ require_once __DIR__ . '/config.php';
  */
 function db_connect()
 {
-    $con = mysqli_connect($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_pass'], $GLOBALS['db_name']);
-    if (mysqli_connect_errno()) {
-        error_log('Failed to connect to MySQL: ' . mysqli_connect_error());
+    // PHP 8.1+ throws mysqli exceptions by default; make that explicit
+    mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    try {
+        return mysqli_connect($GLOBALS['db_host'], $GLOBALS['db_user'], $GLOBALS['db_pass'], $GLOBALS['db_name']);
+    } catch (mysqli_sql_exception $ex) {
+        error_log('Failed to connect to MySQL: ' . $ex->getMessage());
         die('Database unavailable.');
     }
-    return $con;
 }
 
 /**
@@ -24,23 +26,24 @@ function db_connect()
  * @param string  $types Parameter types for binding
  * @param array   $params Parameters to bind
  *
- * @return mysqli_result|false
+ * @return mysqli_result
  */
 function db_query($con, $sql, $types = '', $params = [])
 {
-    $stmt = mysqli_prepare($con, $sql);
-    if (!$stmt) {
-        error_log('Query prepare failed: ' . mysqli_error($con));
+    try {
+        $stmt = mysqli_prepare($con, $sql);
+
+        if ($types && !empty($params)) {
+            mysqli_stmt_bind_param($stmt, $types, ...$params);
+        }
+
+        mysqli_stmt_execute($stmt);
+        $result = mysqli_stmt_get_result($stmt);
+        mysqli_stmt_close($stmt);
+    } catch (mysqli_sql_exception $ex) {
+        error_log('Query failed: ' . $ex->getMessage());
         die('Database error.');
     }
-
-    if ($types && !empty($params)) {
-        mysqli_stmt_bind_param($stmt, $types, ...$params);
-    }
-
-    mysqli_stmt_execute($stmt);
-    $result = mysqli_stmt_get_result($stmt);
-    mysqli_stmt_close($stmt);
 
     return $result;
 }
