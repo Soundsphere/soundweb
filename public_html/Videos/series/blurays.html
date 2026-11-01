@@ -43,8 +43,8 @@
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . $row['Name'] . "</td>";
-  echo "<td>" . $row['Medium'] . "</td>";
+  echo "<td>" . e($row['Name']) . "</td>";
+  echo "<td>" . e($row['Medium']) . "</td>";
   echo "</tr>";
   }
   echo "</tbody></table>";

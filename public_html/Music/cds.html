@@ -46,8 +46,8 @@
   while($row = mysqli_fetch_array($result))
   {
   echo "<tr>";
-  echo "<td>" . $row['Artist'] . "</td>";
-  echo "<td>" . $row['Album'] . "</td>";
+  echo "<td>" . e($row['Artist']) . "</td>";
+  echo "<td>" . e($row['Album']) . "</td>";
   echo "</tr>";
   }
   echo "</tbody></table>";
